@@ -18,7 +18,7 @@ namespace Submarine.Web.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Home()
         //backup push
         {
             return View();
