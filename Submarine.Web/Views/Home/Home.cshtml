@@ -1,0 +1,17 @@
+﻿@using System.Runtime.InteropServices
+@using Submarine.Web.Controllers
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="DivStartButtons" , style="margin-top: 300px">
+        <div style="margin-top: 20px">
+            @Html.ActionLink("Create lobby", "Privacy", "Home", null, new { @class = "btn btn-startbuttons" })
+        </div>
+        <div style="margin-top: 20px">
+            @Html.ActionLink("Join lobby", "Privacy", "Home", null, new { @class = "btn btn-startbuttons" })
+        </div>
+        <div style="margin-top: 20px">
+            @Html.ActionLink("Quit", "Privacy", "Home", null, new { @class = "btn btn-startbuttons" })
+        </div>
+    </div>
