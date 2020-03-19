@@ -70,10 +70,17 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.btn-startbuttons {
+.btn-startbuttons{
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
+    width: 200px;
+}
+
+.btn-startbuttons:hover  {
+    color: #fff;
+    background-color: lightblue;
+    border-color: lightblue;
     width: 200px;
 }
 
