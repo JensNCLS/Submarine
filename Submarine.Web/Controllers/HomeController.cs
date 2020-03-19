@@ -19,12 +19,16 @@ namespace Submarine.Web.Controllers
         }
 
         public IActionResult Home()
-        //backup push
         {
             return View();
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Lobby()
         {
             return View();
         }
