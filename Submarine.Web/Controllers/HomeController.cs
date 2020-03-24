@@ -23,7 +23,7 @@ namespace Submarine.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Quit()
         {
             return View();
         }
