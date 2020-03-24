@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Lobby";
+}
+
+<h1>Lobby</h1>
+<div class="DivStartButtons" , style="margin-top: 300px">
+    <div style="margin-top: 20px">
+        @Html.ActionLink("Start game", "Lobby", "Home", null, new { @class = "btn btn-startbuttons" })
+    </div>
+    <div style="margin-top: 20px">
+        @Html.ActionLink("Leave lobby", "Lobby", "Home", null, new { @class = "btn btn-startbuttons" })
+    </div>
+</div>
+
