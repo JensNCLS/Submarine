@@ -20,7 +20,21 @@ namespace Submarine.Web.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            PlayerModel model = new PlayerModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Login(PlayerModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Home");
+            }
         }
 
         public IActionResult Home()

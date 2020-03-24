@@ -1,14 +1,19 @@
-﻿
+﻿@model Submarine.Web.Models.LobbyModel
 @{
     ViewData["Title"] = "JoinLobby";
 }
 
-<h1>JoinLobby</h1>
+@using (Html.BeginForm("JoinLobby", "Lobby", FormMethod.Post))
+{
 
-<div class="DivStartButtons" , style="margin-top: 265px">
-    <h2>Enter lobby code</h2>
-    @Html.Editor("LobbyCode")
-    <div style="margin-top: 20px">
-        @Html.ActionLink("Join lobby", "Lobby", "Lobby", null, new { @class = "btn btn-startbuttons" })
+    <h1>JoinLobby</h1>
+    <div class="DivStartButtons" , style="margin-top: 265px">
+        <h2>Enter lobby code</h2>
+
+        @Html.EditorFor(model => model.lobbyCode, new {htmlAttributes = new {@class = "text"}})
+        @Html.ValidationMessageFor(model => model.lobbyCode, "", new {@class = "text-danger"})
+        <div style="margin-top: 20px">
+            <button type="submit" , class="btn btn-startbuttons">Join lobby</button>
+        </div>
     </div>
-</div>
+}
