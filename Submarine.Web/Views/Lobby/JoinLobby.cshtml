@@ -5,15 +5,17 @@
 
 @using (Html.BeginForm("JoinLobby", "Lobby", FormMethod.Post))
 {
-
-    <h1>JoinLobby</h1>
-    <div class="DivStartButtons" , style="margin-top: 265px">
+    <h1>Login</h1>
+    <div class="DivCenterButtons" , style="margin-top: 265px">
         <h2>Enter lobby code</h2>
-
-        @Html.EditorFor(model => model.lobbyCode, new {htmlAttributes = new {@class = "text"}})
-        @Html.ValidationMessageFor(model => model.lobbyCode, "", new {@class = "text-danger"})
         <div style="margin-top: 20px">
-            <button type="submit" , class="btn btn-startbuttons">Join lobby</button>
+            @Html.EditorFor(model => model.lobbyCode, new { htmlAttributes = new { @class = "text" } })
+        </div>
+        <div style="margin-top: 20px">
+            @Html.ValidationMessageFor(model => model.lobbyCode, "", new { @class = "text-danger" })
+        </div>
+        <div style="margin-top: 20px">
+            <button type="submit" , class="btn btn-startbuttons">Next</button>
         </div>
     </div>
 }

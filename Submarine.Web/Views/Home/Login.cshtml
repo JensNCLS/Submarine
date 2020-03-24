@@ -7,14 +7,16 @@
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
     <h1>Login</h1>
-    <div class="DivStartButtons" , style="margin-top: 265px">
+    <div class="DivCenterButtons" , style="margin-top: 265px">
         <h2>Enter username</h2>
         <div style="margin-top: 20px">
-            @Html.EditorFor(model => model.username, new {htmlAttributes = new {@class = "text"}})
-            @Html.ValidationMessageFor(model => model.username, "", new {@class = "text-danger"})
-            <div style="margin-top: 20px">
-                <button type="submit" , class="btn btn-startbuttons">Next</button>
-            </div>
+            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "text" } })
+        </div>
+        <div style="margin-top: 20px">
+            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+        </div>
+        <div style="margin-top: 20px">
+            <button type="submit" , class="btn btn-startbuttons">Next</button>
         </div>
     </div>
 }

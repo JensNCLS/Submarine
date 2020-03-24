@@ -9,5 +9,6 @@ namespace Submarine.Web.Models
     public class LobbyModel
     {
         [Required] public string lobbyCode { get; set; }
+        public List<string> players { get; set; }
     }
 }

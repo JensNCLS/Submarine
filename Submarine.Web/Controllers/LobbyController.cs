@@ -9,6 +9,11 @@ namespace Submarine.Web.Controllers
 {
     public class LobbyController : Controller
     {
+        public IActionResult LobbyHost()
+        {
+            return View();
+        }
+
         public IActionResult Lobby()
         {
             return View();

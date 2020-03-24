@@ -1,11 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Lobby";
+﻿
+@{
+    ViewData["Title"] = "LobbyHost";
 }
 
 <h1>Lobby: code</h1>
 <div class="DivBottomRightButtons" , style="margin-top: 265px">
     <div style="margin-top: 20px">
+        @Html.ActionLink("Start game", "PlaceShips", "Game", null, new { @class = "btn btn-startbuttons" })
+    </div>
+    <div style="margin-top: 20px">
         @Html.ActionLink("Leave lobby", "Home", "Home", null, new { @class = "btn btn-startbuttons" })
     </div>
 </div>
-
