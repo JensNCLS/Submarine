@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Submarine.Web.Controllers
 {
-    public class LobbyController : Controller
+    public class GameController : Controller
     {
-        public IActionResult Lobby()
+        public IActionResult PlaceShips()
         {
             return View();
         }
 
-        public IActionResult JoinLobby()
+        public IActionResult Game()
         {
             return View();
         }
