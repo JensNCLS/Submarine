@@ -5,18 +5,21 @@
 
 <h1>Lobby: @Html.Encode(Model.lobbyCode)</h1>
 
-<div style="margin-top: 30px">
-    @foreach (var item in Model.GetAllPlayers())
-    {
-        <div class="col-md-12">
-            <b>@item.username</b>
-            <hr />
-        </div>
-    }
+<div style="margin-top: 40px">
+    <h3>Players:</h3>
+    <div style="margin-top: 20px">
+        @foreach (var item in Model.GetAllPlayers())
+        {
+            <div class="col-md-12">
+                <b>@item.username</b>
+                <hr />
+            </div>
+        }
+    </div>
 </div>
 
 <div class="DivBottomRightButtons">
-    <div style="margin-top: 20px">
+    <div style="        margin-top: 20px">
         @Html.ActionLink("Start game", "PlaceShips", "Game", null, new { @class = "btn btn-startbuttons" })
     </div>
     <div style="margin-top: 20px">

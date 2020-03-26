@@ -13,7 +13,7 @@ namespace Submarine.Web.Models
 
         public LobbyModel()
         {
-            lobbyCode = "NGHKK";
+            lobbyCode = "TXCXX";
 
             players = new List<PlayerModel>()
             {

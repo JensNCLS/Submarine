@@ -12,13 +12,11 @@ namespace Submarine.Web.Controllers
         public IActionResult LobbyHost()
         {
             LobbyModel model = new LobbyModel();
-            ViewBag.lobbyCode = model.lobbyCode;
             return View(model);
         }
 
         public IActionResult Lobby(LobbyModel model)
         {
-            ViewBag.lobbyCode = model.lobbyCode;
             return View(model);
         }
 
