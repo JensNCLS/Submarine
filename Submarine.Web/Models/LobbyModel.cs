@@ -9,6 +9,19 @@ namespace Submarine.Web.Models
     public class LobbyModel
     {
         [Required] public string lobbyCode { get; set; }
-        public List<string> players { get; set; }
+        private List<PlayerModel> players { get; set; }
+
+        public LobbyModel()
+        {
+            players = new List<PlayerModel>()
+            {
+                new PlayerModel() {username = "Roelie"},
+                new PlayerModel() {username = "GrayNolygie"}
+            };
+        }
+        public List<PlayerModel> GetAllPlayers()
+        {
+            return players;
+        }
     }
 }

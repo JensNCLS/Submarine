@@ -11,7 +11,9 @@ namespace Submarine.Web.Controllers
     {
         public IActionResult LobbyHost()
         {
-            return View();
+            LobbyModel model = new LobbyModel();
+            model.GetAllPlayers();
+            return View(model);
         }
 
         public IActionResult Lobby()
@@ -34,7 +36,7 @@ namespace Submarine.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Lobby");
+                return RedirectToAction("Lobby"); 
             }
         }
     }

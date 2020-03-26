@@ -12,3 +12,9 @@
         @Html.ActionLink("Leave lobby", "Home", "Home", null, new { @class = "btn btn-startbuttons" })
     </div>
 </div>
+@foreach (var item in Model.GetAllPlayers())
+{
+    <div class="col-md-12">
+        <b>@item.username</b>
+    </div>
+}
