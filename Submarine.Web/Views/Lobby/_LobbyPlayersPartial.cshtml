@@ -1,0 +1,11 @@
+﻿
+<h3>Players:</h3>
+<div style="margin-top: 20px">
+    @foreach (var item in Model.GetAllPlayers())
+    {
+        <div class="col-md-12">
+            <b>@item.username</b>
+            <hr />
+        </div>
+    }
+</div>

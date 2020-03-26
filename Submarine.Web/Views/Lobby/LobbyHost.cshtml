@@ -6,16 +6,7 @@
 <h1>Lobby: @Html.Encode(Model.lobbyCode)</h1>
 
 <div style="margin-top: 40px">
-    <h3>Players:</h3>
-    <div style="margin-top: 20px">
-        @foreach (var item in Model.GetAllPlayers())
-        {
-            <div class="col-md-12">
-                <b>@item.username</b>
-                <hr />
-            </div>
-        }
-    </div>
+    <partial name="_LobbyPlayersPartial"/>
 </div>
 
 <div class="DivBottomRightButtons">
