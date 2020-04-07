@@ -7,5 +7,6 @@ Pull Requests met jouw gemaakte commits kan je maken tegen de dev-branch.
 @Ikarago zal eens per week deze wijzigingen doorzetten naar de master-branch. Andere wijzigingen en Pull Requests die direct tegen de master branch worden uitgevoerd worden teruggedraaid (tenzij anders afgesproken).
 
 ## Uitleg projecten
-- Submarine.Core --> Backend met de Game Logica
+- Submarine.Core --> Backend met de eigen Game Logica
+- Submarine.ServiceBus --> Koppeling backend met Service Bus (deze zal de vertaalslag doen)
 - Submarine.Web --> ASP.Net Web front-end
