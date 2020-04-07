@@ -1,0 +1,1 @@
+﻿Dit project bevat alle eigen Game Logica en is zo opgezet dat het verder geen losse dependencies heeft, zodat je dit altijd kan gebruiken om een front-end spel op te zetten.

@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="GameLogic\**" />
-    <EmbeddedResource Remove="GameLogic\**" />
-    <None Remove="GameLogic\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
 
