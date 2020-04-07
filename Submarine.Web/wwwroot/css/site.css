@@ -13,15 +13,15 @@ a {
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    color: #0079c0;
+    background-color: #0079c0;
+    border-color: #0079c0;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #0079c0;
+    border-color: #0079c0;
 }
 
 /* Sticky footer styles
@@ -70,10 +70,10 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.btn-startbuttons{
+.btn-startbuttons {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #0079c0;
+    border-color: #0079c0;
     width: 200px;
 }
 
@@ -133,7 +133,7 @@ body {
     }
 
         .grid td:hover {
-            background-color: lightcoral;
+            background-color: yellow;
         }
 
             .grid td.clicked {
