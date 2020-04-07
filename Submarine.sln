@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Submarine.ServiceBus", "Sub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Submarine.GameLogic", "Submarine.GameLogic\Submarine.GameLogic.csproj", "{E8E12C8C-845F-48DD-990F-976BD880295A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F53C6F8-2CA1-4DD3-96A9-050F59BACFD9} = {B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}
+		{28DEC72B-65E1-4E36-A8E6-F6E6045EB7BE} = {B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}
+		{E8E12C8C-845F-48DD-990F-976BD880295A} = {B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0F4D87D-6AA1-4FB1-BB3C-642970BD17B4}
