@@ -14,17 +14,19 @@
 </style>
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
-    <div class="DivCenterButtons" , style="margin-top: 265px">
-        <h2>Enter username</h2>
-        <div style="margin-top: 20px">
-            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "text" } })
-        </div>
-        <div style="margin-top: 20px">
-            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
-        </div>
-        <div style="margin-top: 20px">
-            <button type="submit" , class="btn btn-startbuttons">Next</button>
-        </div>
+<div class="DivCenterButtons">@*, style="margin-top: 265px">*@
+    <div style="margin-top: 15px">
     </div>
+    <h2>Enter username</h2>
+    <div style="margin-top: 20px">
+        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "text" } })
+    </div>
+    <div style="margin-top: 20px">
+        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+    </div>
+    <div style="margin-top: 20px">
+        <button type="submit" , class="btn btn-startbuttons">Next</button>
+    </div>
+</div>
 }
 

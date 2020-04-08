@@ -13,8 +13,9 @@
 </style>
 @using (Html.BeginForm("JoinLobby", "Lobby", FormMethod.Post))
 {
-    <h1>Login</h1>
-    <div class="DivCenterButtons" , style="margin-top: 265px">
+    <div class="DivCenterButtons">@*, style="margin-top: 265px">*@
+        <div style="margin-top: 15px">
+        </div>
         <h2>Enter lobby code</h2>
         <div style="margin-top: 20px">
             @Html.EditorFor(model => model.lobbyCode, new { htmlAttributes = new { @class = "text" } })
