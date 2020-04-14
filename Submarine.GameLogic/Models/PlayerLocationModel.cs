@@ -17,5 +17,17 @@ namespace Submarine.GameLogic.Models
         /// The last (upper-right) coordinate assinged for the player
         /// </summary>
         public ICoordinate EndCoordinate { get; set; }
+
+
+
+        // Constructor
+        public PlayerLocationModel()
+        {
+
+        }
+        public PlayerLocationModel(ICoordinate startCoordinate, ICoordinate endCoordinate)
+        {
+
+        }
     }
 }
