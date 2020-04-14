@@ -6,5 +6,6 @@ namespace Submarine.ServiceBus.Models
 {
     class lol
     {
+        int haha = 5;
     }
 }
