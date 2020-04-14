@@ -10,5 +10,14 @@ namespace Submarine.GameLogic.Models
         // Properties
         public int X { get; set; }
         public int Y { get; set; }
+
+
+
+        // Constructor
+        public CoordinateModel(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
     }
 }

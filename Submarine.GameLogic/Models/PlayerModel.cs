@@ -15,7 +15,10 @@ namespace Submarine.GameLogic.Models
 
 
         // Constructor
+        public PlayerModel()
+        {
 
+        }
 
 
 
