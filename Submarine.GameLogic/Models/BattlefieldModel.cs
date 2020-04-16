@@ -1,6 +1,7 @@
 ﻿using Submarine.GameLogic.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Submarine.GameLogic.Models
@@ -43,12 +44,32 @@ namespace Submarine.GameLogic.Models
         /// <returns>Returns bool indicating setting the players was successful</returns>
         public bool SetPlayersOnBattlefield(List<IPlayer> players)
         {
-            // Count how many players
-            throw new NotImplementedException();
+            // #TODO: Let this method handle only the adding of PlayerLocations to the PlayerPositions
+            List<IPlayerLocation> playerLocations = new List<IPlayerLocation>();
 
+            foreach (IPlayer player in players)
+            {
+                if (_draftPlayerPositions.Count != 0)
+                {
+                    var playerLocation = _draftPlayerPositions[0];
+                    Debug.WriteLine("BattlefieldModel - SetPlayersOnBattlefield - playerLocation, StartCoordinates:" + playerLocation.StartCoordinate.X + ", " + playerLocation.StartCoordinate.Y);
+                    Debug.WriteLine("BattlefieldModel - SetPlayersOnBattlefield - playerLocation, EndCoordinates:" + playerLocation.EndCoordinate.X + ", " + playerLocation.EndCoordinate.Y);
+                    playerLocation.PlayerId = player.PlayerId;
+                    Debug.WriteLine("BattlefieldModel - SetPlayersOnBattlefield - playerLocation, PlayerId:" + playerLocation.PlayerId);
 
+                    playerLocations.Add(playerLocation);
+                    _draftPlayerPositions.RemoveAt(0);
+                }
+                else
+                {
+                    throw new Exception("ERROR - BattlefieldModel - SetPlayersOnBattlefield - Not enough drafted player positions for all players");
+                }
+            }
 
+            PlayerPositions = playerLocations;
+            return true;
         }
+
 
 
 
@@ -59,11 +80,19 @@ namespace Submarine.GameLogic.Models
         /// <returns>Returns the PlayerId of the given coordinate</returns>
         public int CheckPlayerLocation(ICoordinate coordinate)
         {
+            //int playerId = 0;
+
+            //foreach (IPlayerLocation playerLocation in PlayerPositions)
+            //{
+            //    // Check welke coordinaten binnen deze dingen vallen
+            //}
+
+
+
+
+            //return playerId;
+
             throw new NotImplementedException();
-
-
-
-
         }
 
 

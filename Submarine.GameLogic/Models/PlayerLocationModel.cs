@@ -27,7 +27,8 @@ namespace Submarine.GameLogic.Models
         }
         public PlayerLocationModel(ICoordinate startCoordinate, ICoordinate endCoordinate)
         {
-
+            StartCoordinate = startCoordinate;
+            EndCoordinate = endCoordinate;
         }
     }
 }
