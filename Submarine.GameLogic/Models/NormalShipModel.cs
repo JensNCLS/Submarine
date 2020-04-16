@@ -69,10 +69,7 @@ namespace Submarine.GameLogic.Models
                 DamagedSpaces.Add(shotCoordinate);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            else { return false; }
         }
 
 
