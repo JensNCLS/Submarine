@@ -57,11 +57,29 @@
             var dataCol = event.getAttribute("data-col");
 
             //alert(dataRow + dataCol);
-            if(event.style.background == "" || event.style.background =="white") {
+            if(event.style.background == 'yellow') {
                 $(event).css('background', 'lightgray');
             }
             else {
                 $(event).css('background', '');
+            }
+        }
+
+        function hoverOver(event) {
+            if(event.style.background == "") {
+                $(event).css('background', 'yellow');
+            }
+            if(event.style.background == "lightgray") {
+                $(event).css('background', 'red');
+            }
+        }
+
+        function hoverOut(event) {
+            if(event.style.background == 'yellow') {
+                $(event).css('background', '');
+            }
+            if(event.style.background == "red") {
+                $(event).css('background', 'lightgray');
             }
         }
     </script>
@@ -75,7 +93,7 @@
     <div class="row no-gutters playingFieldRow">
         @for (var j = 1; j < 11; j++)
         {
-            <div class="col field" data-row="@i" data-col="@j" onclick="clicked(this)">
+            <div class="col field" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
                 
             </div>
         }
