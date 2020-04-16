@@ -112,34 +112,6 @@ body {
     right: 60px;
 }
 
-/*.DivPlayingField {
-    height: 200px;
-    width: 200px;
-    overflow-y: auto;
-}*/
-
-/*.DivPlaceShips {
-    width: 100%;
-    text-align: center;
-}
-
-.DivPlaceshipsBottomRightButtons {
-    position: absolute;
-    bottom: 100px;
-    right: 60px;
-}
-
-.DivPlaceShipsField {
-    display: inline-block;
-    margin: 0 auto;
-    padding: 3px;
-}
-
-.DivPlaceShipsShips {
-    width: 200px;
-    float: right;
-}*/
-
 .DivLobbyPlayers {
     width: 300px;
     background-color: white;
