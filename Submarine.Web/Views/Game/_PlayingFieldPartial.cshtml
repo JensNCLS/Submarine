@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <head>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         var lastClicked;
+        var i = 0;
         var grid = clickableGrid(10,
             10,
             function (el, row, col, i) {
@@ -9,23 +10,26 @@
                 //console.log("You clicked on row:",row);
                 //console.log("You clicked on col:",col);
                 //console.log("You clicked on item #:",i);
-
-                el.className = 'clicked';
-                if (lastClicked) lastClicked.className = '';
-                lastClicked = el;
+                if (el.className == '') {
+                    el.className = 'clicked';
+                    lastClicked = el;
+                } else if (el.className == 'clicked') {
+                    el.className = '';
+                }
+                //if (lastClicked) lastClicked.className = '';
             });
+
+        //grid = clickedRows(grid, lastClicked);
 
         document.body.appendChild(grid);
 
         function clickableGrid(rows, cols, callback) {
-            var i = 0;
-            var grid = document.createElement('table');
+            var grid = document.createElement('game');
             grid.className = 'grid';
             for (var r = 0; r < rows; ++r) {
                 var tr = grid.appendChild(document.createElement('tr'));
                 for (var c = 0; c < cols; ++c) {
                     var cell = tr.appendChild(document.createElement('td'));
-                    //cell.innerHTML = ++i;
                     cell.addEventListener('click',
                         (function (el, r, c, i) {
                             return function () {
@@ -37,5 +41,44 @@
             }
             return grid;
         }
+
+        //function clickedRows(grid, lastclicked) {
+        //    if (lastclicked != null) {
+        //        for (var i = lastClicked.r; i < lastClicked.r+3; i++) {
+        //            grid[i][lastClicked.c].className = "clicked";
+        //        }
+        //    }
+        //    return grid;
+        //}
+    </script>*@
+    <script>
+        function clicked(event) {
+            var dataRow = event.getAttribute("data-row");
+            var dataCol = event.getAttribute("data-col");
+
+            //alert(dataRow + dataCol);
+            if(event.style.background == "" || event.style.background =="white") {
+                $(event).css('background', 'lightgray');
+            }
+            else {
+                $(event).css('background', '');
+            }
+        }
     </script>
+
+
+    
 </head>
+<body>
+@for (var i = 1; i < 11; i++)
+{
+    <div class="row no-gutters playingFieldRow">
+        @for (var j = 1; j < 11; j++)
+        {
+            <div class="col field" data-row="@i" data-col="@j" onclick="clicked(this)">
+                
+            </div>
+        }
+    </div>
+}
+</body>

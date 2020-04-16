@@ -112,11 +112,33 @@ body {
     right: 60px;
 }
 
-.DivPlayingField {
+/*.DivPlayingField {
     height: 200px;
     width: 200px;
     overflow-y: auto;
+}*/
+
+/*.DivPlaceShips {
+    width: 100%;
+    text-align: center;
 }
+
+.DivPlaceshipsBottomRightButtons {
+    position: absolute;
+    bottom: 100px;
+    right: 60px;
+}
+
+.DivPlaceShipsField {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 3px;
+}
+
+.DivPlaceShipsShips {
+    width: 200px;
+    float: right;
+}*/
 
 .DivLobbyPlayers {
     width: 300px;
@@ -131,8 +153,8 @@ body {
 
     .grid td {
         cursor: pointer;
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         border: 1px solid #ccc;
         text-align: center;
         font-family: sans-serif;
@@ -146,3 +168,15 @@ body {
             .grid td.clicked {
                  background-color: lightgray;
              }
+
+.field {
+    border: 1px solid black;
+}
+
+.PlaceShips {
+    height: 50vh;
+}
+
+.playingFieldRow {
+    height: 10%;
+}
