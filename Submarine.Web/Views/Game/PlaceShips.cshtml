@@ -13,53 +13,101 @@
         background-color: white;
     }
 </style>
+
+<script>
+    var count = 0;
+
+    function choosen(event) {
+        if(event.style.background == 'yellow' && count < 1) {
+            $(event).css('background', 'lightgray');
+            count++;
+        }
+        else if(event.style.background == 'red'){
+            $(event).css('background', '');
+            count--;
+        }
+    }
+
+    function hoverOverShip(event) {
+        if(event.style.background == "") {
+            $(event).css('background', 'yellow');
+        }
+        if(event.style.background == "lightgray") {
+            $(event).css('background', 'red');
+        }
+    }
+
+    function hoverOutShip(event) {
+        if(event.style.background == 'yellow') {
+            $(event).css('background', '');
+        }
+        if(event.style.background == "red") {
+            $(event).css('background', 'lightgray');
+        }
+    }
+</script>
+
+<body>
+<div class="ChooseShips">
+    @for (var i = 2; i < 7; i++)
+    {
+        <div class="row no-gutters ChooseShipsRow">
+            <div class="col field" data-row="@i" onclick="choosen(this)" onmouseover="hoverOverShip(this)" onmouseout="hoverOutShip(this)">
+                @i
+            </div>
+        </div>
+    }
+</div>
 <div>
     <div class="container PlaceShips">
         <partial name="_PlayingFieldPartial" />
+        @*@Html.Partial("_PlayingFieldPartial", new ShipPicker { { "shipPlaces",  } });*@
+        @*@{ Html.RenderPartial("_PlayingFieldPartial", new { ship = @ship });}*@
     </div>
 
     @*<div style="float: right; width: 100px">
-        <script type="text/javascript">
-            var lastClicked;
-            var grid = clickableGrid(4,
-                1,
-                function(el, row, col, i) {
-                    //console.log("You clicked on element:",el);
-                    //console.log("You clicked on row:",row);
-                    //console.log("You clicked on col:",col);
-                    //console.log("You clicked on item #:",i);
+                <script type="text/javascript">
+                    var lastClicked;
+                    var grid = clickableGrid(4,
+                        1,
+                        function(el, row, col, i) {
+                            //console.log("You clicked on element:",el);
+                            //console.log("You clicked on row:",row);
+                            //console.log("You clicked on col:",col);
+                            //console.log("You clicked on item #:",i);
 
-                    el.className = 'clicked';
-                    if (lastClicked) lastClicked.className = '';
-                    lastClicked = el;
-                });
+                            el.className = 'clicked';
+                            if (lastClicked) lastClicked.className = '';
+                            lastClicked = el;
+                        });
 
-            document.body.appendChild(grid);
+                    document.body.appendChild(grid);
 
-            function clickableGrid(rows, cols, callback) {
-                var i = 0;
-                var j = 1;
-                var grid = document.createElement('game');
-                grid.className = 'grid';
-                for (var r = 0; r < rows; ++r) {
-                    var tr = grid.appendChild(document.createElement('tr'));
-                    for (var c = 0; c < cols; ++c) {
-                        var cell = tr.appendChild(document.createElement('td'));
-                        cell.innerHTML = ++j;
-                        cell.addEventListener('click',
-                            (function(el, r, c, i) {
-                                return function() {
-                                    callback(el, r, c, i);
-                                }
-                            })(cell, r, c, i),
-                            false);
+                    function clickableGrid(rows, cols, callback) {
+                        var i = 0;
+                        var j = 1;
+                        var grid = document.createElement('game');
+                        grid.className = 'grid';
+                        for (var r = 0; r < rows; ++r) {
+                            var tr = grid.appendChild(document.createElement('tr'));
+                            for (var c = 0; c < cols; ++c) {
+                                var cell = tr.appendChild(document.createElement('td'));
+                                cell.innerHTML = ++j;
+                                cell.addEventListener('click',
+                                    (function(el, r, c, i) {
+                                        return function() {
+                                            callback(el, r, c, i);
+                                        }
+                                    })(cell, r, c, i),
+                                    false);
+                            }
+                        }
+                        return grid;
                     }
-                }
-                return grid;
-            }
-        </script>
-    </div>*@
+                </script>
+            </div>*@
 </div>
 <div style="margin-top: 20px" , class="DivBottomRightButtons">
-    @Html.ActionLink("Submit", "Game", "Game", null, new { @class = "btn btn-startbuttons" })
+    @Html.ActionLink("Submit", "Game", "Game", null, new {@class = "btn btn-startbuttons"})
 </div>
+</body>

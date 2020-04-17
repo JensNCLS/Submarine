@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Submarine.Web.Models
 {
-    public class ShipModel
+    public class ShipPicker
     {
         public int shipPlaces { get; set; }
     }

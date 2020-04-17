@@ -1,16 +1,20 @@
 ﻿<!DOCTYPE html>
 <head>
     <script>
+        var count = 0;
+
         function clicked(event) {
             var dataRow = event.getAttribute("data-row");
             var dataCol = event.getAttribute("data-col");
 
             //alert(dataRow + dataCol);
-            if(event.style.background == 'yellow') {
+            if(event.style.background == 'yellow' && count<5) {
                 $(event).css('background', 'lightgray');
+                count++;
             }
-            else {
+            else if(event.style.background == 'red'){
                 $(event).css('background', '');
+                count--;
             }
         }
 
@@ -36,11 +40,11 @@
 <body>
 @for (var i = 1; i < 11; i++)
 {
-    <div class="row no-gutters playingFieldRow">
+    <div class="row no-gutters PlaceShipsRow">
         @for (var j = 1; j < 11; j++)
         {
             <div class="col field" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
-                
+
             </div>
         }
     </div>

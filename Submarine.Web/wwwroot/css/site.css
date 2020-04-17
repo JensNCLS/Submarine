@@ -130,6 +130,19 @@ body {
     width: 80vh;
 }
 
-.playingFieldRow {
+.PlaceShipsRow {
     height: 9%;
+}
+
+.ChooseShips {
+    position: absolute;
+    right: 30%;
+    top: 15%;
+    height: 80vh;
+    width: 10vh;
+}
+
+.ChooseShipsRow {
+    height: 10%;
+    text-align: center;
 }
