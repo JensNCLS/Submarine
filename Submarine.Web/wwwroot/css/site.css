@@ -120,6 +120,7 @@ body {
 
 .field {
     border: 1px solid black;
+    background-image: url(Images/Profile_pic_2.jpg)
 }
 
 .PlaceShips {
