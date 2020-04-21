@@ -90,6 +90,13 @@ body {
     height: 68px;
     width: 333px;
 }
+    .btn-shipbuttons:hover {
+        color: #fff;
+        border-color: yellow;
+        background-color: yellow;
+        height: 68px;
+        width: 333px;
+    }
 
 .boat2 {
     background-image: url(Images/boat2.png);
