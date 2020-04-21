@@ -2,12 +2,13 @@
 <head>
     <script>
         var count = 0;
+        var maxSize = 0;
 
         function clicked(event) {
             var dataRow = event.getAttribute("data-row");
             var dataCol = event.getAttribute("data-col");
 
-            if(event.style.background == 'yellow' && count<5) {
+            if(event.style.background == 'yellow' && count<maxSize) {
                 $(event).css('background', 'lightgray');
                 count++;
             }
@@ -33,6 +34,11 @@
             if(event.style.background == "red") {
                 $(event).css('background', 'lightgray');
             }
+        }
+
+        function choosenShip(event) {
+            count = 0;
+            maxSize = event.getAttribute("data-size");
         }
     </script>
 </head>

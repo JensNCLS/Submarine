@@ -84,6 +84,33 @@ body {
     width: 200px;
 }
 
+.btn-shipbuttons {
+    color: #fff;
+    border-color: #0079c0;
+    height: 68px;
+    width: 333px;
+}
+
+.boat2 {
+    background-image: url(Images/boat2.png);
+}
+
+.boat3 {
+    background-image: url(Images/boat3.png);
+}
+
+.sub3 {
+    background-image: url(Images/sub3.png);
+}
+
+.boat4 {
+    background-image: url(Images/boat4.png);
+}
+
+.boat5 {
+    background-image: url(Images/boat5.png);
+}
+
 .DivLoginAndLobby {
     position: fixed;
     top: 50%;
@@ -146,4 +173,8 @@ body {
 .ChooseShipsRow {
     height: 10%;
     text-align: center;
+}
+
+.imageURL {
+    background-image: url(Images/water13.png);
 }
