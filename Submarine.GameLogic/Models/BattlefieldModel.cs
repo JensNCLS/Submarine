@@ -80,19 +80,23 @@ namespace Submarine.GameLogic.Models
         /// <returns>Returns the PlayerId of the given coordinate</returns>
         public int CheckPlayerLocation(ICoordinate coordinate)
         {
-            //int playerId = 0;
+            int playerId = 0;
+            int Xinp = coordinate.X;
+            int Yinp = coordinate.Y;
 
-            //foreach (IPlayerLocation playerLocation in PlayerPositions)
-            //{
-            //    // Check welke coordinaten binnen deze dingen vallen
-            //}
-
-
-
-
-            //return playerId;
-
-            throw new NotImplementedException();
+            foreach (IPlayerLocation playerLocation in PlayerPositions)
+            {
+                // Check welke coordinaten binnen deze dingen vallen
+                
+                if (Xinp >= playerLocation.StartCoordinate.X  && Xinp <= playerLocation.EndCoordinate.X)
+                {
+                    if (Yinp >= playerLocation.StartCoordinate.Y && Yinp <= playerLocation.EndCoordinate.Y)
+                    {
+                        playerId = playerLocation.PlayerId;
+                    }
+                }
+            }
+            return playerId;
         }
 
 
