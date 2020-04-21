@@ -18,8 +18,10 @@
     var count = 0;
 
     function choosen(event) {
-        if(event.style.background == 'yellow' && count < 1) {
-            $(event).css('background', 'lightgray');
+        var ship = event.i;
+
+        if(event.style.background == 'lightblue' && count < 1) {
+            $(event).css('background', 'royalblue');
             count++;
         }
         else if(event.style.background == 'red'){
@@ -30,19 +32,19 @@
 
     function hoverOverShip(event) {
         if(event.style.background == "") {
-            $(event).css('background', 'yellow');
+            $(event).css('background', 'lightblue');
         }
-        if(event.style.background == "lightgray") {
+        if(event.style.background == "royalblue") {
             $(event).css('background', 'red');
         }
     }
 
     function hoverOutShip(event) {
-        if(event.style.background == 'yellow') {
+        if(event.style.background == 'lightblue') {
             $(event).css('background', '');
         }
         if(event.style.background == "red") {
-            $(event).css('background', 'lightgray');
+            $(event).css('background', 'royalblue');
         }
     }
 </script>
