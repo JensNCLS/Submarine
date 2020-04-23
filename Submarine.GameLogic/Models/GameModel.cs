@@ -16,6 +16,7 @@ namespace Submarine.GameLogic.Models
         public List<IPlayer> Players { get; set; }
         public IBattlefield Battlefield { get; set; }
         public int Turn { get; set; }
+        public bool ShootLoopActive { get; set; }
         public IPlayer CurrentPlayer { get; set; }
         // Keep track of turns --> TurnHistoryModel --> TurnNumber + Player?
         // List with Players on who has the turn
@@ -29,6 +30,7 @@ namespace Submarine.GameLogic.Models
         public GameModel()
         {
             GameId = 0;
+            ShootLoopActive = false;
         }
 
 
@@ -60,7 +62,7 @@ namespace Submarine.GameLogic.Models
         // Change turn
         public void StartGame()
         {
-
+            ShootLoopActive = true;
         }
 
 
@@ -108,7 +110,10 @@ namespace Submarine.GameLogic.Models
             foreach (IPlayer player in players)
             {
                 if (!player.IsAlive())
-                { return player; }
+                {
+                    ShootLoopActive = false;
+                    return player; 
+                }
                 Debug.WriteLine("CheckAliveStates - Player " + player.PlayerId + " is alive.");
             }
             return null;

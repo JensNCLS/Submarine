@@ -7,11 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Submarine.Core", "Submarine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Submarine.Web", "Submarine.Web\Submarine.Web.csproj", "{B5DE2B24-0790-4F96-8E4D-706F71FE2138}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Submarine.ServiceBus", "Submarine.ServiceBus\Submarine.ServiceBus.csproj", "{28DEC72B-65E1-4E36-A8E6-F6E6045EB7BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Submarine.ServiceBus", "Submarine.ServiceBus\Submarine.ServiceBus.csproj", "{28DEC72B-65E1-4E36-A8E6-F6E6045EB7BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Submarine.GameLogic", "Submarine.GameLogic\Submarine.GameLogic.csproj", "{E8E12C8C-845F-48DD-990F-976BD880295A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Submarine.GameLogic", "Submarine.GameLogic\Submarine.GameLogic.csproj", "{E8E12C8C-845F-48DD-990F-976BD880295A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{768D252E-A6B3-4281-BBA6-B8F9ED59CF4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Submarine.Terminal", "Submarine.Terminal\Submarine.Terminal.csproj", "{A30DDEB5-9260-4783-81C8-3B01FF95F6B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,10 @@ Global
 		{E8E12C8C-845F-48DD-990F-976BD880295A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8E12C8C-845F-48DD-990F-976BD880295A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8E12C8C-845F-48DD-990F-976BD880295A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30DDEB5-9260-4783-81C8-3B01FF95F6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30DDEB5-9260-4783-81C8-3B01FF95F6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30DDEB5-9260-4783-81C8-3B01FF95F6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30DDEB5-9260-4783-81C8-3B01FF95F6B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +51,7 @@ Global
 		{0F53C6F8-2CA1-4DD3-96A9-050F59BACFD9} = {B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}
 		{28DEC72B-65E1-4E36-A8E6-F6E6045EB7BE} = {B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}
 		{E8E12C8C-845F-48DD-990F-976BD880295A} = {B56C06DB-0BAC-4AAA-8F79-D3DE2BF43138}
+		{A30DDEB5-9260-4783-81C8-3B01FF95F6B7} = {768D252E-A6B3-4281-BBA6-B8F9ED59CF4B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0F4D87D-6AA1-4FB1-BB3C-642970BD17B4}
