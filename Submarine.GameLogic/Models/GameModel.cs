@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models
 {
-    class GameModel : IGame
+    public class GameModel : IGame
     {
         // Properties
         public string LobbyId { get; set; }

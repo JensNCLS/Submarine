@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Interfaces
 {
-    interface IGame
+    public interface IGame
     {
         // Properties
         string LobbyId { get; set; }

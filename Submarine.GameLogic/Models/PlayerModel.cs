@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models
 {
-    class PlayerModel : IPlayer
+    public class PlayerModel : IPlayer
     {
         // Properties
         public int PlayerId { get; private set; }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Interfaces
 {
-    interface IShip
+    public interface IShip
     {
         // Properties
         /// <summary>

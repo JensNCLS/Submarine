@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Interfaces
 {
-    interface IPlayer
+    public interface IPlayer
     {
         // Properties
         int PlayerId { get; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models
 {
-    class NormalShipModel : IShip
+    public class NormalShipModel : IShip
     {
         // Properties
         /// <summary>

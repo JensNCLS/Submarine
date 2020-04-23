@@ -1,6 +1,7 @@
 ﻿using Submarine.Terminal.Helpers;
 using System;
 using System.Threading.Tasks;
+using Submarine.GameLogic.Models;
 
 namespace Submarine.Terminal
 {
@@ -10,6 +11,7 @@ namespace Submarine.Terminal
         {
             // Properties
             TextHelper TextHelper = new TextHelper();
+            GameModel Game = new GameModel();
 
 
 
