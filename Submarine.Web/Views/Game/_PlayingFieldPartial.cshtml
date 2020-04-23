@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<head>
+    <script>
+        var count = 0;
+        var maxSize = 0;
+
+        function clicked(event) {
+            var dataRow = event.getAttribute("data-row");
+            var dataCol = event.getAttribute("data-col");
+
+            if(event.style.background == 'yellow' && count<maxSize) {
+                $(event).css('background', 'lightgray');
+                count++;
+            }
+            else if(event.style.background == 'red'){
+                $(event).css('background', '');
+                count--;
+            }
+        }
+
+        function hoverOver(event) {
+            if(event.style.background == '') {
+                $(event).css('background', 'yellow');
+            }
+            if(event.style.background == "lightgray") {
+                $(event).css('background', 'red');
+            }
+        }
+
+        function hoverOut(event) {
+            if(event.style.background == 'yellow') {
+                $(event).css('background', '');
+            }
+            if(event.style.background == "red") {
+                $(event).css('background', 'lightgray');
+            }
+        }
+
+        function choosenShip(event) {
+            count = 0;
+            maxSize = event.getAttribute("data-size");
+        }
+    </script>
+</head>
+<body>
+@for (var i = 1; i < 11; i++)
+{
+    <div class="row no-gutters PlaceShipsRow">
+        @for (var j = 1; j < 11; j++)
+        {
+            <div class="col field" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
+
+            </div>
+        }
+    </div>
+}
+</body>

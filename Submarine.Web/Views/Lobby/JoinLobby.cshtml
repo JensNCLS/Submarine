@@ -1,0 +1,30 @@
+﻿@model Submarine.Web.Models.LobbyModel
+@{
+    ViewData["Title"] = "JoinLobby";
+}
+<style>
+    body {
+        background-color: #5e9ad3;
+    }
+
+    footer {
+        background-color: white;
+    }
+</style>
+@using (Html.BeginForm("JoinLobby", "Lobby", FormMethod.Post))
+{
+    <div class="DivLoginAndLobby">@*, style="margin-top: 265px">*@
+        <div style="margin-top: 15px">
+        </div>
+        <h2>Enter lobby code</h2>
+        <div style="margin-top: 20px">
+            @Html.EditorFor(model => model.lobbyCode, new { htmlAttributes = new { @class = "text" } })
+        </div>
+        <div style="margin-top: 20px">
+            @Html.ValidationMessageFor(model => model.lobbyCode, "", new { @class = "text-danger" })
+        </div>
+        <div style="margin-top: 20px">
+            <button type="submit" , class="btn btn-startbuttons">Next</button>
+        </div>
+    </div>
+}

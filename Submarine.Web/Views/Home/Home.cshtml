@@ -1,0 +1,25 @@
+﻿@using System.Runtime.InteropServices
+@using Submarine.Web.Controllers
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body {
+        background-color: #5e9ad3;
+    }
+
+    footer {
+        background-color: white;
+    }
+</style>
+<div class="DivHomeButtons"> @*,  style="margin-top: 300px">*@
+        <div style="margin-top: 40px">
+            @Html.ActionLink("Create lobby", "LobbyHost", "Lobby", null, new { @class = "btn btn-startbuttons" })
+        </div>
+        <div style="margin-top: 30px">
+            @Html.ActionLink("Join lobby", "JoinLobby", "Lobby", null, new { @class = "btn btn-startbuttons" })
+        </div>
+        <div style="margin-top: 30px">
+            @Html.ActionLink("Quit", "Quit", "Home", null, new { @class = "btn btn-startbuttons" })
+        </div>
+    </div>

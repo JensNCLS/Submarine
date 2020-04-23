@@ -13,15 +13,15 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #0079c0;
+    background-color: #0079c0;
+    border-color: #0079c0;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #0079c0;
+    border-color: #0079c0;
 }
 
 /* Sticky footer styles
@@ -68,4 +68,121 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.btn-startbuttons {
+    color: #fff;
+    background-color: #0079c0;
+    border-color: #0079c0;
+    width: 200px;
+}
+
+.btn-startbuttons:hover  {
+    color: #fff;
+    background-color: lightblue;
+    border-color: lightblue;
+    width: 200px;
+}
+
+.btn-shipbuttons {
+    color: #fff;
+    border-color: #0079c0;
+    height: 68px;
+    width: 333px;
+    margin-top: 20px;
+}
+    .btn-shipbuttons:hover {
+        color: #fff;
+        border-color: yellow;
+        background-color: yellow;
+        height: 68px;
+        width: 333px;
+    }
+
+.boat2 {
+    background-image: url(Images/boat2.png);
+}
+
+.boat3 {
+    background-image: url(Images/boat3.png);
+}
+
+.sub3 {
+    background-image: url(Images/sub3.png);
+}
+
+.boat4 {
+    background-image: url(Images/boat4.png);
+}
+
+.boat5 {
+    background-image: url(Images/boat5.png);
+}
+
+.DivLoginAndLobby {
+    position: fixed;
+    top: 50%;
+    left: 65%;
+    width: 20%;
+    height: 20vh;
+    margin: -100px 0 0 -25%;
+    text-align: center;
+    background-color: #98cbee;
+}
+
+.DivHomeButtons {
+    position: fixed;
+    top: 50%;
+    left: 65%;
+    width: 20%;
+    height: 27vh;
+    margin: -100px 0 0 -25%;
+    text-align: center;
+    background-color: #98cbee;
+}
+
+.DivBottomRightButtons {
+    position: absolute;
+    bottom: 10%;
+    right: 6%;
+}
+
+.DivLobbyPlayers {
+    width: 300px;
+    background-color: white;
+    text-align: center;
+}
+
+.field {
+    border: 1px solid black;
+    background-image: url(Images/water13.png)
+}
+
+.PlaceShips {
+    position: absolute;
+    left: 20%;
+    top: 15%;
+    height: 80vh;
+    width: 80vh;
+}
+
+.PlaceShipsRow {
+    height: 9%;
+}
+
+.ChooseShips {
+    position: absolute;
+    right: 30%;
+    top: 15%;
+    height: 80vh;
+    width: 10vh;
+}
+
+.ChooseShipsRow {
+    height: 10%;
+    text-align: center;
+}
+
+.imageURL {
+    background-image: url(Images/water13.png);
 }
