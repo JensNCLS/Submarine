@@ -79,6 +79,10 @@ namespace Submarine.GameLogic.Models
         }
 
         // #TODO: Add adding Ships
+        // Create new ship
+
+
+        // Finalize Ship list
 
         /// <summary>
         /// Checks if one of the players ships occupies the shot space
