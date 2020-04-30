@@ -9,6 +9,11 @@ namespace Submarine.GameLogic.Models.Base
     {
         // Properties
         /// <summary>
+        /// Override this per ship!
+        /// </summary>
+        public static readonly int AmountOfAllowedSpaced = 0;
+
+        /// <summary>
         /// The coordinates the ship occupies
         /// </summary>
         public List<ICoordinate> OccupiedSpaces { get; set; }
@@ -17,6 +22,7 @@ namespace Submarine.GameLogic.Models.Base
         /// The coordinates the other players have destroyed
         /// </summary>
         public List<ICoordinate> DamagedSpaces { get; set; }
+
 
 
 

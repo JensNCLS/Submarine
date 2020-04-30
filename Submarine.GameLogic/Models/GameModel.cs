@@ -1,5 +1,6 @@
 ﻿using Submarine.GameLogic.Interfaces;
 using Submarine.GameLogic.Models.Base;
+using Submarine.GameLogic.Models.Ships;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -148,7 +149,9 @@ namespace Submarine.GameLogic.Models
         {
             List<ShipBase> ships = new List<ShipBase>();
 
-            var ship1 = new NormalShipModel(new CoordinateModel(3, 3));
+
+
+            var ship1 = new FlexibleShipModel(new CoordinateModel(3, 3));
             ships.Add(ship1);
 
             return ships;
