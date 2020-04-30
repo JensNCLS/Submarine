@@ -62,9 +62,13 @@ namespace Submarine.GameLogic.Models
         }
 
 
-        // Change turn
-        public void StartGame()
+        // #1
+        /// <summary>
+        /// Starts the Battle (requires ships to be set for all players)
+        /// </summary>
+        public void StartBattle()
         {
+            // #TODO: Check if the players actually have their ships set
             PlayerOrder = CreatePlayerOrder(Players);
 
             ShootLoopActive = true;
@@ -73,6 +77,7 @@ namespace Submarine.GameLogic.Models
         }
 
 
+        // #2
         public bool ShootProjectile(ICoordinate shotCoordinate)
         {
             // Check which player has been shot
@@ -90,19 +95,28 @@ namespace Submarine.GameLogic.Models
         }
 
 
+        // #3 Check for another shot
+
+
+        // #4
+        /// <summary>
+        /// Ends the current turn and checks for the Game Over-state
+        /// </summary>
+        public void EndTurn()
+        {
+            if (CheckAliveStates(Players) != null)
+            {
+                Debug.WriteLine("GameModel - EndTurn - Game Over stated ");
+            }
+        }
+
+
+        // #5
         /// <summary>
         /// Ends the turn of the current player and changes to the next one
         /// </summary>
         public void ChangeTurn()
         {
-            // Check Game state
-            //if (CheckAliveStates(Players) != null)
-            //{
-                // Go to GameOver State
-                Debug.WriteLine("GameModel - ChangeTurn - Game Over stated ");
-            //}
-            //else
-            //{
                 if (CurrentPlayer == null)
                 { CurrentPlayer = PlayerOrder[0]; }
                 else
@@ -117,8 +131,8 @@ namespace Submarine.GameLogic.Models
                 }
                 Turn++;
                 Debug.WriteLine("GameModel - ChangeTurn - Start of Turn for PlayerID " + CurrentPlayer.PlayerId);
-            //}
         }
+
 
 
         /// <summary>
@@ -139,10 +153,6 @@ namespace Submarine.GameLogic.Models
             }
             return null;
         }
-
-
-
-
 
 
         /// <summary>

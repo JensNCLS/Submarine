@@ -54,7 +54,7 @@ namespace Submarine.Terminal
 
 
             // Shoot loops
-            Game.StartGame();
+            Game.StartBattle();
             while (Game.ShootLoopActive)
             {
                 TextHelper.ShowText("Player " + Game.CurrentPlayer.PlayerId + " turn");
