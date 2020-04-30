@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Submarine.GameLogic.Models;
 using Submarine.GameLogic.Interfaces;
+using Submarine.GameLogic.Helpers;
 
 namespace Submarine.Terminal
 {
@@ -13,6 +14,7 @@ namespace Submarine.Terminal
             // Properties
             TextHelper TextHelper = new TextHelper();
             GameModel Game = new GameModel();
+            DebugDataHelper debugDataHelper = new DebugDataHelper();
 
 
 
@@ -39,8 +41,8 @@ namespace Submarine.Terminal
 
             // Set ships
             // LOL DEBUG STUFFFFFFFF
-            var debugShipsP1 = Game.GetDebugShipSetP1();
-            var debugShipsP2 = Game.GetDebugShipSetP2();
+            var debugShipsP1 = debugDataHelper.GetDebugShipSetP1();
+            var debugShipsP2 = debugDataHelper.GetDebugShipSetP2();
             Game.SetShipsOfPlayer(Game.Players[0], debugShipsP1);
             Game.SetShipsOfPlayer(Game.Players[1], debugShipsP2);
             // #END OF HARDWIRED DEBUG STUFF

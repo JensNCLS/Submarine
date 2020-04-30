@@ -65,7 +65,11 @@ namespace Submarine.GameLogic.Models
         // Change turn
         public void StartGame()
         {
+            PlayerOrder = CreatePlayerOrder(Players);
+
             ShootLoopActive = true;
+
+            ChangeTurn();
         }
 
 
@@ -86,20 +90,34 @@ namespace Submarine.GameLogic.Models
         }
 
 
+        /// <summary>
+        /// Ends the turn of the current player and changes to the next one
+        /// </summary>
         public void ChangeTurn()
         {
             // Check Game state
-            if (CheckAliveStates(Players) != null)
-            {
+            //if (CheckAliveStates(Players) != null)
+            //{
                 // Go to GameOver State
-            }
-            else
-            {
+                Debug.WriteLine("GameModel - ChangeTurn - Game Over stated ");
+            //}
+            //else
+            //{
+                if (CurrentPlayer == null)
+                { CurrentPlayer = PlayerOrder[0]; }
+                else
+                {
+                Debug.WriteLine("GameModel - ChangeTurn - Ending of Turn for PlayerID " + CurrentPlayer.PlayerId);
+
+                // #TODO Improve this to be done via alogrythm instead of hardcoded
+                if (CurrentPlayer == PlayerOrder[0])
+                    { CurrentPlayer = PlayerOrder[1]; }
+                    else if (CurrentPlayer == PlayerOrder[1])
+                    { CurrentPlayer = PlayerOrder[0]; }
+                }
                 Turn++;
-
-            }
-
-
+                Debug.WriteLine("GameModel - ChangeTurn - Start of Turn for PlayerID " + CurrentPlayer.PlayerId);
+            //}
         }
 
 
@@ -146,20 +164,7 @@ namespace Submarine.GameLogic.Models
             player.Ships = ships;
         }
 
-        public List<ShipBase> GetDebugShipSetP1()
-        {
-            List<ShipBase> ships = new List<ShipBase>();
-            var ship1 = new FlexibleShipModel(new CoordinateModel(3, 3));
-            ships.Add(ship1);
-            return ships;
-        }
-        public List<ShipBase> GetDebugShipSetP2()
-        {
-            List<ShipBase> ships = new List<ShipBase>();
-            var ship1 = new FlexibleShipModel(new CoordinateModel(3, 13));
-            ships.Add(ship1);
-            return ships;
-        }
+
 
     }
 }
