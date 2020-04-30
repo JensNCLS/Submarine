@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using Submarine.GameLogic.Models;
+using Submarine.GameLogic.Interfaces;
 
 namespace Submarine.Terminal
 {
@@ -29,13 +30,24 @@ namespace Submarine.Terminal
 
 
             // Create a new game
-            TextHelper.ShowText("New Game created...");
-
-
+            Game.NewGame(2);
+            TextHelper.ShowText("New Game created for two players...");
             Console.ReadKey();
+            TextHelper.ShowText("");
+
 
 
             // Set ships
+            // This is so shit, it's probably going to crash the Player list again
+            var debugShips = Game.GetDebugShipSetP1();
+            foreach (IPlayer player in Game.Players)
+            {
+                Game.SetShipsOfPlayer(player, debugShips);
+            }
+
+            TextHelper.ShowText("Ships have been set...");
+            Console.ReadKey();
+
 
 
             // Shoot loops

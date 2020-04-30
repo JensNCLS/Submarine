@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Submarine.GameLogic.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace Submarine.GameLogic.Interfaces
     {
         // Properties
         int PlayerId { get; }
-        List<IShip> Ships { get; set; }
+        List<ShipBase> Ships { get; set; }
         List<ICoordinate> ShotSpaces { get; set; }
 
         // Methods
