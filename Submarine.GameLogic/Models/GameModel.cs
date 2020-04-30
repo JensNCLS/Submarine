@@ -41,8 +41,9 @@ namespace Submarine.GameLogic.Models
         // Game loops
         public string NewGame(int amountOfPlayers)
         {
-            // Set GameId
+            // Set GameId and player list
             GameId++;
+            Players = new List<IPlayer>();
 
             // Create Battlefield
             Battlefield = new BattlefieldModel(10, 10, amountOfPlayers);
@@ -142,18 +143,21 @@ namespace Submarine.GameLogic.Models
         // Set Ships of player
         public void SetShipsOfPlayer(IPlayer player, List<ShipBase> ships)
         {
-
+            player.Ships = ships;
         }
 
         public List<ShipBase> GetDebugShipSetP1()
         {
             List<ShipBase> ships = new List<ShipBase>();
-
-
-
             var ship1 = new FlexibleShipModel(new CoordinateModel(3, 3));
             ships.Add(ship1);
-
+            return ships;
+        }
+        public List<ShipBase> GetDebugShipSetP2()
+        {
+            List<ShipBase> ships = new List<ShipBase>();
+            var ship1 = new FlexibleShipModel(new CoordinateModel(3, 13));
+            ships.Add(ship1);
             return ships;
         }
 

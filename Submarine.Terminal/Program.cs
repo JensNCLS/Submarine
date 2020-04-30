@@ -38,12 +38,13 @@ namespace Submarine.Terminal
 
 
             // Set ships
-            // This is so shit, it's probably going to crash the Player list again
-            var debugShips = Game.GetDebugShipSetP1();
-            foreach (IPlayer player in Game.Players)
-            {
-                Game.SetShipsOfPlayer(player, debugShips);
-            }
+            // LOL DEBUG STUFFFFFFFF
+            var debugShipsP1 = Game.GetDebugShipSetP1();
+            var debugShipsP2 = Game.GetDebugShipSetP2();
+            Game.SetShipsOfPlayer(Game.Players[0], debugShipsP1);
+            Game.SetShipsOfPlayer(Game.Players[1], debugShipsP2);
+            // #END OF HARDWIRED DEBUG STUFF
+
 
             TextHelper.ShowText("Ships have been set...");
             Console.ReadKey();
@@ -51,12 +52,32 @@ namespace Submarine.Terminal
 
 
             // Shoot loops
+            Game.StartGame();
+            while (Game.ShootLoopActive)
+            {
+                TextHelper.ShowText("Player " + Game.CurrentPlayer.PlayerId + " turn");
+                TextHelper.ShowText("Shoot X coordinate: ");
+                string xCo = Console.ReadLine();
+                TextHelper.ShowText("Shoot Y coordinate: ");
+                string yCo = Console.ReadLine();
+
+                TextHelper.ShowText("Shooting at(" + xCo + ", " + yCo + ")...");
+                var shotCoordinate = new CoordinateModel(Convert.ToInt32(xCo), Convert.ToInt32(yCo));
+
+                // Shoot and handle the shot
+                var isHit = Game.ShootProjectile(shotCoordinate);
+                TextHelper.ShowText("Did the player hit something? " + isHit.ToString());
+
+                Game.ChangeTurn();
+            }
 
 
 
             // Game Over state
 
 
+            TextHelper.ShowText("Game over");
+            string x = Console.ReadLine();
 
 
 
