@@ -17,6 +17,7 @@ namespace Submarine.GameLogic.Helpers
         {
             List<ShipBase> ships = new List<ShipBase>();
             var ship1 = new FlexibleShipModel(new CoordinateModel(3, 3));
+            var ship2 = new FlexibleShipModel(new CoordinateModel(4, 4));
             Debug.WriteLine("DebugDataHelper - P1 - Ship set at " + ship1.OccupiedSpaces[0].X.ToString() + ", " + ship1.OccupiedSpaces[0].Y.ToString());
             ships.Add(ship1);
             return ships;

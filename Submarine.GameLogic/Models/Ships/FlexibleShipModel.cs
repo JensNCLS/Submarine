@@ -17,7 +17,7 @@ namespace Submarine.GameLogic.Models.Ships
 
 
 
-        //Constructor
+        // Constructor
         /// <summary>
         /// Create a new Flexible Ship (multiple spaces)
         /// </summary>

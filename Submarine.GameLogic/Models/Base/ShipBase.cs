@@ -10,6 +10,12 @@ namespace Submarine.GameLogic.Models.Base
     abstract public class ShipBase
     {
         // Properties
+        private bool _shipIdSet = false;
+        /// <summary>
+        /// The unique identifier for each ship
+        /// </summary>
+        public Guid ShipId { get; private set; }
+
         /// <summary>
         /// Override this per ship!
         /// </summary>
@@ -27,8 +33,27 @@ namespace Submarine.GameLogic.Models.Base
 
 
 
+        // Constructor
+        public ShipBase()
+        {
+            SetShipId();
+        }
+
+
 
         // Methods
+        /// <summary>
+        /// Sets a new GUID for a ship (only once)
+        /// </summary>
+        private void SetShipId()
+        {
+            if (!_shipIdSet)
+            {
+                ShipId = Guid.NewGuid();
+                _shipIdSet = true;
+            }
+        }
+
         /// <summary>
         /// Checks if the ship is still alive
         /// </summary>
