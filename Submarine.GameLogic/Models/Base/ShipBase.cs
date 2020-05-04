@@ -1,6 +1,7 @@
 ﻿using Submarine.GameLogic.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -36,9 +37,9 @@ namespace Submarine.GameLogic.Models.Base
             if (DamagedSpaces.Count >= OccupiedSpaces.Count)
             {
                 // #TODO Add in a check if all places have actually been shot
-                return true;
+                return false;
             }
-            else { return false; }
+            else { return true; }
         }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace Submarine.GameLogic.Models.Base
             {
                 if (previouslyShot == null)
                 {
+                    Debug.WriteLine("Ship got shot on " + shotCoordinate.X + ", " + shotCoordinate.Y);
                     DamagedSpaces.Add(shotCoordinate);
                     return true;
                 }
@@ -64,15 +66,6 @@ namespace Submarine.GameLogic.Models.Base
                 }
             }
             else { return false; }
-
-
-
-            //if (OccupiedSpaces.Contains(shotCoordinate) && !DamagedSpaces.Contains(shotCoordinate))
-            //{
-            //    DamagedSpaces.Add(shotCoordinate);
-            //    return true;
-            //}
-            //else { return false; }
         }
     }
 }

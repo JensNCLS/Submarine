@@ -102,9 +102,15 @@ namespace Submarine.GameLogic.Models
         /// </summary>
         public void EndTurn()
         {
-            if (CheckAliveStates(Players) != null)
+            var deadPlayer = CheckAliveStates(Players);
+            if (deadPlayer != null)
             {
-                Debug.WriteLine("GameModel - EndTurn - Game Over stated ");
+                Debug.WriteLine("GameModel - EndTurn - Game Over stated. ");
+                Debug.WriteLine("Player " + deadPlayer.PlayerId + " died");
+            }
+            else
+            {
+                ChangeTurn();
             }
         }
 

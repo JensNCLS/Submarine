@@ -70,7 +70,8 @@ namespace Submarine.Terminal
                 var isHit = Game.ShootProjectile(shotCoordinate);
                 TextHelper.ShowText("Did the player hit something? " + isHit.ToString());
 
-                Game.ChangeTurn();
+                Game.EndTurn();
+                //Game.ChangeTurn();
             }
 
 
