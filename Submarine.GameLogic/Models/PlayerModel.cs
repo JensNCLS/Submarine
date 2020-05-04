@@ -23,6 +23,7 @@ namespace Submarine.GameLogic.Models
         public PlayerModel(int playerId)
         {
             PlayerId = playerId;
+            ShotSpaces = new List<ICoordinate>();
         }
 
 

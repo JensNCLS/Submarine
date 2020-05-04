@@ -88,7 +88,10 @@ namespace Submarine.GameLogic.Models
             var playerIndex = Players.FindIndex(p => p.PlayerId == playerId);
             var hit = Players[playerIndex].GotShot(shotCoordinate);
 
-            // #TODO Give feedback to the player who shot
+            // Add shot to list of shot spaces
+            var cpIndex = Players.FindIndex(p => p.PlayerId == CurrentPlayer.PlayerId);
+            Players[cpIndex].ShotSpaces.Add(shotCoordinate);
+
             return hit;
         }
 
