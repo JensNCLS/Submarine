@@ -37,6 +37,7 @@ namespace Submarine.GameLogic.Models.Base
         public ShipBase()
         {
             SetShipId();
+            Debug.WriteLine("ShipBase - Constructor - New Ship created with ShipId: " + ShipId);
         }
 
 
@@ -62,9 +63,14 @@ namespace Submarine.GameLogic.Models.Base
             if (DamagedSpaces.Count >= OccupiedSpaces.Count)
             {
                 // #TODO Add in a check if all places have actually been shot
+                Debug.WriteLine("ShipBase - Ship " + ShipId + " is dead");
                 return false;
             }
-            else { return true; }
+            else 
+            {
+                Debug.WriteLine("ShipBase - Ship " + ShipId + " is alive");
+                return true; 
+            }
         }
 
         /// <summary>
@@ -80,12 +86,13 @@ namespace Submarine.GameLogic.Models.Base
             {
                 if (previouslyShot == null)
                 {
-                    Debug.WriteLine("Ship got shot on " + shotCoordinate.X + ", " + shotCoordinate.Y);
+                    Debug.WriteLine("Ship " + ShipId + " got shot on " + shotCoordinate.X + ", " + shotCoordinate.Y + " - HIT");
                     DamagedSpaces.Add(shotCoordinate);
                     return true;
                 }
                 else
                 {
+                    Debug.WriteLine("Ship " + ShipId + " got shot AGAIN on " + shotCoordinate.X + ", " + shotCoordinate.Y + " - Counted as MISS");
                     // This space has already been damaged
                     return false;
                 }

@@ -22,7 +22,7 @@ namespace Submarine.GameLogic.Models
         public IPlayer CurrentPlayer { get; set; }
         // Keep track of turns --> TurnHistoryModel --> TurnNumber + Player?
         // List with Players on who has the turn
-        private int PlayerCount { get; set; }
+        //private int PlayerCount { get; set; }
         public List<IPlayer> PlayerOrder { get; private set; }
 
 
@@ -93,7 +93,7 @@ namespace Submarine.GameLogic.Models
         }
 
 
-        // #3 Check for another shot
+        // #3 Check for another shot --> afhandelen door front-end
 
 
         // #4
@@ -125,7 +125,7 @@ namespace Submarine.GameLogic.Models
                 { CurrentPlayer = PlayerOrder[0]; }
                 else
                 {
-                Debug.WriteLine("GameModel - ChangeTurn - Ending of Turn for PlayerID " + CurrentPlayer.PlayerId);
+                Debug.WriteLine("GameModel - ChangeTurn - Ending of Turn for Player " + CurrentPlayer.PlayerId);
 
                 // #TODO Improve this to be done via alogrythm instead of hardcoded
                 if (CurrentPlayer == PlayerOrder[0])
@@ -134,7 +134,7 @@ namespace Submarine.GameLogic.Models
                     { CurrentPlayer = PlayerOrder[0]; }
                 }
                 Turn++;
-                Debug.WriteLine("GameModel - ChangeTurn - Start of Turn for PlayerID " + CurrentPlayer.PlayerId);
+                Debug.WriteLine("GameModel - ChangeTurn - Start of Turn for Player " + CurrentPlayer.PlayerId);
         }
 
 

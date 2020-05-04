@@ -2,6 +2,7 @@
 using Submarine.GameLogic.Models.Base;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Submarine.GameLogic.Models
@@ -33,10 +34,19 @@ namespace Submarine.GameLogic.Models
         /// <returns>Returns a bool indicating if the player still has living ships</returns>
         public bool IsAlive()
         {
+            int deadShips = 0;
             foreach (ShipBase ship in Ships)
             {
                 if (!ship.IsAlive())
-                { return false; }
+                {
+                    deadShips++;
+                }
+            }
+
+            if (deadShips >= Ships.Count)
+            {
+                Debug.WriteLine("PlayerModel - IsAlive - Player " + PlayerId + " has lost all ships. - GAME OVER P" + PlayerId);
+                return false;
             }
 
             return true;
