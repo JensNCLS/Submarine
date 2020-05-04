@@ -80,7 +80,7 @@ namespace Submarine.GameLogic.Models
         /// <returns>Returns the PlayerId of the given coordinate</returns>
         public int CheckPlayerLocation(ICoordinate coordinate)
         {
-            int playerId = 0;
+            int playerId = -1;
             int Xinp = coordinate.X;
             int Yinp = coordinate.Y;
 
@@ -96,6 +96,7 @@ namespace Submarine.GameLogic.Models
                     }
                 }
             }
+            Debug.WriteLine("BattlefieldModel - CheckPlayerLocation - Battlearea of Player " + playerId + " got shot");
             return playerId;
         }
 

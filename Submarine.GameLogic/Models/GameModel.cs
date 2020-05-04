@@ -81,14 +81,12 @@ namespace Submarine.GameLogic.Models
         public bool ShootProjectile(ICoordinate shotCoordinate)
         {
             // Check which player has been shot
+            // #TODO: Put in Exception catches for out of bounds input
             var playerId = Battlefield.CheckPlayerLocation(shotCoordinate);
-            var shotPlayer = Players.Where(p => p.PlayerId == playerId).FirstOrDefault();
 
             // Send the shot to the correct player
-            var hit = shotPlayer.GotShot(shotCoordinate);
-
-            // Put it back in the List
-            Players[Players.FindIndex(p => p.PlayerId == playerId)] = shotPlayer;
+            var playerIndex = Players.FindIndex(p => p.PlayerId == playerId);
+            var hit = Players[playerIndex].GotShot(shotCoordinate);
 
             // #TODO Give feedback to the player who shot
             return hit;
