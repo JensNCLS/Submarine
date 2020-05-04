@@ -54,7 +54,8 @@ namespace Submarine.GameLogic.Models
             if (ship != null)
             {
                 // 2 - Handle the damage on the ship
-                var isHit = ship.GotShot(shotCoordinate);
+                var shipIndex = Ships.FindIndex(s => s.OccupiedSpaces == ship.OccupiedSpaces);
+                var isHit = Ships[shipIndex].GotShot(shotCoordinate);
                 return isHit;
                 
                 // #TODO --> 3 - Check if ship is still alive --> Will be handled by the GameModel by checking the PlayerModel-IsAlive()
@@ -85,6 +86,9 @@ namespace Submarine.GameLogic.Models
 
         // Finalize Ship list
 
+
+
+
         /// <summary>
         /// Checks if one of the players ships occupies the shot space
         /// </summary>
@@ -94,8 +98,14 @@ namespace Submarine.GameLogic.Models
         {
             foreach (ShipBase ship in Ships)
             {
-                if (ship.OccupiedSpaces.Contains(shotCoordinate))
-                { return ship; }
+                foreach (ICoordinate coordinate in ship.OccupiedSpaces)
+                {
+                    // #TODO Check if the coordinate has already been damaged
+                    if (coordinate.X == shotCoordinate.X && coordinate.Y == shotCoordinate.Y)
+                    {
+                        return ship;
+                    }
+                }
             }
 
             // If we reached the code here then no ship is on the shot coordinate, so let's send back a null.

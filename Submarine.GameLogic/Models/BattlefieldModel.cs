@@ -70,9 +70,6 @@ namespace Submarine.GameLogic.Models
             return true;
         }
 
-
-
-
         /// <summary>
         /// Checks which PlayerId is on the given coordinate
         /// </summary>
@@ -96,10 +93,15 @@ namespace Submarine.GameLogic.Models
                     }
                 }
             }
+
+            if (playerId == -1)
+            {
+                throw new Exception("BattlefieldModel - Shot was out of bounds");
+            }
+
             Debug.WriteLine("BattlefieldModel - CheckPlayerLocation - Battlearea of Player " + playerId + " got shot");
             return playerId;
         }
-
 
         /// <summary>
         /// Creates a list with draft positions for the battlefield

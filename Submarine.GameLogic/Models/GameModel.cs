@@ -81,8 +81,8 @@ namespace Submarine.GameLogic.Models
         public bool ShootProjectile(ICoordinate shotCoordinate)
         {
             // Check which player has been shot
-            // #TODO: Put in Exception catches for out of bounds input
             var playerId = Battlefield.CheckPlayerLocation(shotCoordinate);
+            CheckOnSelfShooting(shotCoordinate, CurrentPlayer.PlayerId);
 
             // Send the shot to the correct player
             var playerIndex = Players.FindIndex(p => p.PlayerId == playerId);
@@ -173,6 +173,35 @@ namespace Submarine.GameLogic.Models
         }
 
 
+        public bool CheckIfShotIsLegal(ICoordinate coordinate, int CurrentPlayerId)
+        {
+            // Change this to enum
+
+            throw new NotImplementedException();
+        }
+
+
+        private bool CheckOnShootingSameSpaceTwice()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        /// <summary>
+        /// Checks if the player the current player shot at isn't themself
+        /// </summary>
+        /// <param name="coordinate">the coordinate the player shot at</param>
+        /// <param name="CurrentPlayerId">The player who shot the shot</param>
+        /// <returns>Returns true if the player didn't shoot themself, false if they shot themself</returns>
+        private bool CheckOnSelfShooting(ICoordinate coordinate, int CurrentPlayerId)
+        {
+            var playerId = Battlefield.CheckPlayerLocation(coordinate);
+            if  (playerId == CurrentPlayerId)
+            {
+                return false;
+            }
+            return true;
+        }
 
     }
 }

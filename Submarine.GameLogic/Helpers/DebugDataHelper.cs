@@ -3,6 +3,7 @@ using Submarine.GameLogic.Models.Base;
 using Submarine.GameLogic.Models.Ships;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Submarine.GameLogic.Helpers
@@ -16,6 +17,7 @@ namespace Submarine.GameLogic.Helpers
         {
             List<ShipBase> ships = new List<ShipBase>();
             var ship1 = new FlexibleShipModel(new CoordinateModel(3, 3));
+            Debug.WriteLine("DebugDataHelper - P1 - Ship set at " + ship1.OccupiedSpaces[0].X.ToString() + ", " + ship1.OccupiedSpaces[0].Y.ToString());
             ships.Add(ship1);
             return ships;
         }
@@ -23,6 +25,7 @@ namespace Submarine.GameLogic.Helpers
         {
             List<ShipBase> ships = new List<ShipBase>();
             var ship1 = new FlexibleShipModel(new CoordinateModel(3, 13));
+            Debug.WriteLine("DebugDataHelper - P1 - Ship set at " + ship1.OccupiedSpaces[0].X.ToString() + ", " + ship1.OccupiedSpaces[0].Y.ToString());
             ships.Add(ship1);
             return ships;
         }

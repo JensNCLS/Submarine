@@ -1,6 +1,7 @@
 ﻿using Submarine.GameLogic.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Submarine.GameLogic.Models.Base
@@ -46,12 +47,32 @@ namespace Submarine.GameLogic.Models.Base
         /// <param name="shotCoordinate">Shot coordinate</param>
         public bool GotShot(ICoordinate shotCoordinate)
         {
-            if (OccupiedSpaces.Contains(shotCoordinate) && !DamagedSpaces.Contains(shotCoordinate))
+            var occupiedCoordinate = OccupiedSpaces.Where(c => c.X == shotCoordinate.X && c.Y == shotCoordinate.Y).FirstOrDefault();
+            var previouslyShot = DamagedSpaces.Where(c => c.X == shotCoordinate.X && c.Y == shotCoordinate.Y).FirstOrDefault();
+
+            if (occupiedCoordinate != null)
             {
-                DamagedSpaces.Add(shotCoordinate);
-                return true;
+                if (previouslyShot == null)
+                {
+                    DamagedSpaces.Add(shotCoordinate);
+                    return true;
+                }
+                else
+                {
+                    // This space has already been damaged
+                    return false;
+                }
             }
             else { return false; }
+
+
+
+            //if (OccupiedSpaces.Contains(shotCoordinate) && !DamagedSpaces.Contains(shotCoordinate))
+            //{
+            //    DamagedSpaces.Add(shotCoordinate);
+            //    return true;
+            //}
+            //else { return false; }
         }
     }
 }
