@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models
 {
-    class BattlefieldModel : IBattlefield
+    public class BattlefieldModel : IBattlefield
     {
         // Properties
         public int BattlefieldWidth { get; }

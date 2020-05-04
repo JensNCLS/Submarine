@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models
 {
-    class CoordinateModel : ICoordinate
+    public class CoordinateModel : ICoordinate
     {
         // Properties
         public int X { get; set; }

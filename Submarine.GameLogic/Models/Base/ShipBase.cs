@@ -3,15 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Submarine.GameLogic.Models
+namespace Submarine.GameLogic.Models.Base
 {
-    class NormalShipModel : IShip
+    abstract public class ShipBase
     {
         // Properties
+        /// <summary>
+        /// Override this per ship!
+        /// </summary>
+        public static readonly int AmountOfAllowedSpaced = 0;
+
         /// <summary>
         /// The coordinates the ship occupies
         /// </summary>
         public List<ICoordinate> OccupiedSpaces { get; set; }
+
         /// <summary>
         /// The coordinates the other players have destroyed
         /// </summary>
@@ -19,34 +25,11 @@ namespace Submarine.GameLogic.Models
 
 
 
-        //Constructor
-        /// <summary>
-        /// Create a new Normal Ship Model (multiple spaces)
-        /// </summary>
-        /// <param name="occupiedCoordinates">List with multiple coordinates</param>
-        public NormalShipModel(List<ICoordinate> occupiedCoordinates)
-        {
-            OccupiedSpaces = occupiedCoordinates;
-            DamagedSpaces = new List<ICoordinate>();
-        }
-
-        /// <summary>
-        /// Create a new Normal Ship Model (single space)
-        /// </summary>
-        /// <param name="occupiedCoordinate">A single coordinate the ship occupies</param>
-        public NormalShipModel(ICoordinate occupiedCoordinate)
-        {
-            OccupiedSpaces = new List<ICoordinate>() { occupiedCoordinate };
-            DamagedSpaces = new List<ICoordinate>();
-        }
-
-
 
         // Methods
         /// <summary>
         /// Checks if the ship is still alive
         /// </summary>
-        /// <returns>Returns 'true' for alive and 'false' for destroyed</returns>
         public bool IsAlive()
         {
             if (DamagedSpaces.Count >= OccupiedSpaces.Count)
@@ -61,7 +44,6 @@ namespace Submarine.GameLogic.Models
         /// Handles the shot coordinate with the ship
         /// </summary>
         /// <param name="shotCoordinate">Shot coordinate</param>
-        /// <returns>Returns 'true' for a hit and 'false' for a miss</returns>
         public bool GotShot(ICoordinate shotCoordinate)
         {
             if (OccupiedSpaces.Contains(shotCoordinate) && !DamagedSpaces.Contains(shotCoordinate))
@@ -71,7 +53,5 @@ namespace Submarine.GameLogic.Models
             }
             else { return false; }
         }
-
-
     }
 }

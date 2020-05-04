@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Interfaces
 {
-    interface IBattlefield
+    public interface IBattlefield
     {
         // Properties
         /// <summary>

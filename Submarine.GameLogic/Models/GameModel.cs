@@ -1,4 +1,6 @@
 ﻿using Submarine.GameLogic.Interfaces;
+using Submarine.GameLogic.Models.Base;
+using Submarine.GameLogic.Models.Ships;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +10,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models
 {
-    class GameModel : IGame
+    public class GameModel : IGame
     {
         // Properties
         public string LobbyId { get; set; }
@@ -16,6 +18,7 @@ namespace Submarine.GameLogic.Models
         public List<IPlayer> Players { get; set; }
         public IBattlefield Battlefield { get; set; }
         public int Turn { get; set; }
+        public bool ShootLoopActive { get; set; }
         public IPlayer CurrentPlayer { get; set; }
         // Keep track of turns --> TurnHistoryModel --> TurnNumber + Player?
         // List with Players on who has the turn
@@ -29,6 +32,7 @@ namespace Submarine.GameLogic.Models
         public GameModel()
         {
             GameId = 0;
+            ShootLoopActive = false;
         }
 
 
@@ -37,8 +41,9 @@ namespace Submarine.GameLogic.Models
         // Game loops
         public string NewGame(int amountOfPlayers)
         {
-            // Set GameId
+            // Set GameId and player list
             GameId++;
+            Players = new List<IPlayer>();
 
             // Create Battlefield
             Battlefield = new BattlefieldModel(10, 10, amountOfPlayers);
@@ -57,13 +62,22 @@ namespace Submarine.GameLogic.Models
         }
 
 
-        // Change turn
-        public void StartGame()
+        // #1
+        /// <summary>
+        /// Starts the Battle (requires ships to be set for all players)
+        /// </summary>
+        public void StartBattle()
         {
+            // #TODO: Check if the players actually have their ships set
+            PlayerOrder = CreatePlayerOrder(Players);
 
+            ShootLoopActive = true;
+
+            ChangeTurn();
         }
 
 
+        // #2
         public bool ShootProjectile(ICoordinate shotCoordinate)
         {
             // Check which player has been shot
@@ -81,21 +95,44 @@ namespace Submarine.GameLogic.Models
         }
 
 
-        public void ChangeTurn()
+        // #3 Check for another shot
+
+
+        // #4
+        /// <summary>
+        /// Ends the current turn and checks for the Game Over-state
+        /// </summary>
+        public void EndTurn()
         {
-            // Check Game state
             if (CheckAliveStates(Players) != null)
             {
-                // Go to GameOver State
+                Debug.WriteLine("GameModel - EndTurn - Game Over stated ");
             }
-            else
-            {
-                Turn++;
-
-            }
-
-
         }
+
+
+        // #5
+        /// <summary>
+        /// Ends the turn of the current player and changes to the next one
+        /// </summary>
+        public void ChangeTurn()
+        {
+                if (CurrentPlayer == null)
+                { CurrentPlayer = PlayerOrder[0]; }
+                else
+                {
+                Debug.WriteLine("GameModel - ChangeTurn - Ending of Turn for PlayerID " + CurrentPlayer.PlayerId);
+
+                // #TODO Improve this to be done via alogrythm instead of hardcoded
+                if (CurrentPlayer == PlayerOrder[0])
+                    { CurrentPlayer = PlayerOrder[1]; }
+                    else if (CurrentPlayer == PlayerOrder[1])
+                    { CurrentPlayer = PlayerOrder[0]; }
+                }
+                Turn++;
+                Debug.WriteLine("GameModel - ChangeTurn - Start of Turn for PlayerID " + CurrentPlayer.PlayerId);
+        }
+
 
 
         /// <summary>
@@ -108,15 +145,14 @@ namespace Submarine.GameLogic.Models
             foreach (IPlayer player in players)
             {
                 if (!player.IsAlive())
-                { return player; }
+                {
+                    ShootLoopActive = false;
+                    return player; 
+                }
                 Debug.WriteLine("CheckAliveStates - Player " + player.PlayerId + " is alive.");
             }
             return null;
         }
-
-
-
-
 
 
         /// <summary>
@@ -133,10 +169,12 @@ namespace Submarine.GameLogic.Models
 
 
         // Set Ships of player
-        public void SetShipsOfPlayer(IPlayer player, List<IShip> ships)
+        public void SetShipsOfPlayer(IPlayer player, List<ShipBase> ships)
         {
-
+            player.Ships = ships;
         }
+
+
 
     }
 }
