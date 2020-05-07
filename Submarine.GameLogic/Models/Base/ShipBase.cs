@@ -19,7 +19,7 @@ namespace Submarine.GameLogic.Models.Base
         /// <summary>
         /// Override this per ship!
         /// </summary>
-        public static readonly int AmountOfAllowedSpaced = 0;
+        public static readonly int AmountOfAllowedSpaces = 0;
 
         /// <summary>
         /// The coordinates the ship occupies

@@ -1,4 +1,5 @@
-﻿using Submarine.GameLogic.Interfaces;
+﻿using Submarine.GameLogic.Helpers;
+using Submarine.GameLogic.Interfaces;
 using Submarine.GameLogic.Models.Base;
 using Submarine.GameLogic.Models.Ships;
 using System;
@@ -25,6 +26,7 @@ namespace Submarine.GameLogic.Models
         //private int PlayerCount { get; set; }
         public List<IPlayer> PlayerOrder { get; private set; }
 
+        private ShotValidationHelper _shotValidator;
 
 
 
@@ -33,6 +35,7 @@ namespace Submarine.GameLogic.Models
         {
             GameId = 0;
             ShootLoopActive = false;
+            _shotValidator = new ShotValidationHelper();
         }
 
 
@@ -77,26 +80,62 @@ namespace Submarine.GameLogic.Models
         }
 
 
-        // #2
-        public bool ShootProjectile(ICoordinate shotCoordinate)
+        // #2 
+        /// <summary>
+        /// Validates the shot
+        /// </summary>
+        /// <param name="shotCoordinate">The coordinate you want to shoot at</param>
+        /// <returns>Returns the results so an invalid shot can be handled if nessesary</returns>
+        public ValidateShotResult ValidateShot(ICoordinate shotCoordinate)
         {
-            // Check which player has been shot
-            var playerId = Battlefield.CheckPlayerLocation(shotCoordinate);
-            CheckOnSelfShooting(shotCoordinate, CurrentPlayer.PlayerId);
-
-            // Send the shot to the correct player
-            var playerIndex = Players.FindIndex(p => p.PlayerId == playerId);
-            var hit = Players[playerIndex].GotShot(shotCoordinate);
-
-            // Add shot to list of shot spaces
-            var cpIndex = Players.FindIndex(p => p.PlayerId == CurrentPlayer.PlayerId);
-            Players[cpIndex].ShotSpaces.Add(shotCoordinate);
-
-            return hit;
+            var result = _shotValidator.ValidateShot(shotCoordinate, CurrentPlayer, Battlefield);
+            return result;
         }
 
 
-        // #3 Check for another shot --> afhandelen door front-end
+
+        // #3
+        /// <summary>
+        /// Shoots at the given coordinate
+        /// </summary>
+        /// <param name="shotCoordinate">The coordinate you want to shoot at</param>
+        /// <param name="validation">Enter the results of ValidateShot here. Will give an exception if the shot is not valid!</param>
+        /// <returns>Returns 'True' on a hit and 'False' on a miss</returns>
+        public bool ShootProjectile(ICoordinate shotCoordinate, ValidateShotResult validation)
+        {
+            if (validation == ValidateShotResult.Valid)
+            {
+                // Check which player has been shot
+                // Validate the shot again to be sure someone didn't just doctor the result
+                var result = _shotValidator.ValidateShot(shotCoordinate, CurrentPlayer, Battlefield);
+                Debug.WriteLine("GameModel - ShootProjectile - Shot Validation - Shot was " + result.ToString());
+
+                if (result == ValidateShotResult.Valid)
+                {
+                    // Send the shot to the correct player
+                    var playerId = Battlefield.CheckPlayerLocation(shotCoordinate);
+                    var playerIndex = Players.FindIndex(p => p.PlayerId == playerId);
+                    var hit = Players[playerIndex].GotShot(shotCoordinate);
+
+                    // Add shot to list of shot spaces
+                    var cpIndex = Players.FindIndex(p => p.PlayerId == CurrentPlayer.PlayerId);
+                    Players[cpIndex].ShotSpaces.Add(shotCoordinate);
+
+                    return hit;
+                }
+                else
+                {
+                    throw new Exception("GameModel - ShootProjectile - Botched validation given - ERROR");
+                }
+            }
+            else
+            {
+                throw new Exception("GameModel - ShootProjectile - Shot not validated or given illegal move - ERROR");
+            }
+        }
+
+
+        // Check for another shot --> afhandelen door front-end
 
 
         // #4
@@ -122,8 +161,10 @@ namespace Submarine.GameLogic.Models
         /// <summary>
         /// Ends the turn of the current player and changes to the next one
         /// </summary>
-        public void ChangeTurn()
+        /// <returns>Return IPlayer model that will be the next lucky player :)</returns>
+        public IPlayer ChangeTurn()
         {
+            IPlayer nextPlayer;
                 if (CurrentPlayer == null)
                 { CurrentPlayer = PlayerOrder[0]; }
                 else
@@ -138,7 +179,15 @@ namespace Submarine.GameLogic.Models
                 }
                 Turn++;
                 Debug.WriteLine("GameModel - ChangeTurn - Start of Turn for Player " + CurrentPlayer.PlayerId);
+
+            // #TODO: Change this that the CurrentPlayer will be based on the NextPlayer
+            nextPlayer = CurrentPlayer;
+
+            return nextPlayer;
         }
+
+
+
 
 
 
@@ -182,35 +231,9 @@ namespace Submarine.GameLogic.Models
         }
 
 
-        public bool CheckIfShotIsLegal(ICoordinate coordinate, int CurrentPlayerId)
-        {
-            // Change this to enum
-
-            throw new NotImplementedException();
-        }
 
 
-        private bool CheckOnShootingSameSpaceTwice()
-        {
-            throw new NotImplementedException();
-        }
 
-
-        /// <summary>
-        /// Checks if the player the current player shot at isn't themself
-        /// </summary>
-        /// <param name="coordinate">the coordinate the player shot at</param>
-        /// <param name="CurrentPlayerId">The player who shot the shot</param>
-        /// <returns>Returns true if the player didn't shoot themself, false if they shot themself</returns>
-        private bool CheckOnSelfShooting(ICoordinate coordinate, int CurrentPlayerId)
-        {
-            var playerId = Battlefield.CheckPlayerLocation(coordinate);
-            if  (playerId == CurrentPlayerId)
-            {
-                return false;
-            }
-            return true;
-        }
 
     }
 }

@@ -15,8 +15,5 @@ namespace Submarine.GameLogic.Interfaces
 
         // Methods
         string NewGame(int amountOfPlayers);
-
-        bool ShootProjectile(ICoordinate shotCoordinate);
-        // #TODO Check Game State
     }
 }
