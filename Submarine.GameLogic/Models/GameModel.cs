@@ -188,6 +188,7 @@ namespace Submarine.GameLogic.Models
 
 
 
+        // ======================================================
 
 
 
@@ -227,7 +228,7 @@ namespace Submarine.GameLogic.Models
         // Set Ships of player
         public void SetShipsOfPlayer(IPlayer player, List<ShipBase> ships)
         {
-            player.Ships = ships;
+            player.SetShips(ships);
         }
 
 

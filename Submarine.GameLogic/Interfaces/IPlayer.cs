@@ -9,11 +9,12 @@ namespace Submarine.GameLogic.Interfaces
     {
         // Properties
         int PlayerId { get; }
-        List<ShipBase> Ships { get; set; }
+        List<ShipBase> Ships { get; }
         List<ICoordinate> ShotSpaces { get; set; }
 
         // Methods
         bool IsAlive();
+        void SetShips(List<ShipBase> shipList);
         bool GotShot(ICoordinate shotSpace);
 
 

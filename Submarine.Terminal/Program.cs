@@ -67,7 +67,9 @@ namespace Submarine.Terminal
                 var shotCoordinate = new CoordinateModel(Convert.ToInt32(xCo), Convert.ToInt32(yCo));
 
                 // Shoot and handle the shot
-                var isHit = Game.ShootProjectile(shotCoordinate);
+                // Validate the shot
+                var validatationResult = Game.ValidateShot(shotCoordinate);
+                var isHit = Game.ShootProjectile(shotCoordinate, validatationResult);
                 TextHelper.ShowText("Did the player hit something? " + isHit.ToString());
 
                 Game.EndTurn();

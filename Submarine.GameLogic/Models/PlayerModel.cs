@@ -11,7 +11,7 @@ namespace Submarine.GameLogic.Models
     {
         // Properties
         public int PlayerId { get; private set; }
-        public List<ShipBase> Ships { get; set; }
+        public List<ShipBase> Ships { get; private set; }
         /// <summary>
         /// Keeps track of the spaces the coordinates the player (self) shot during the game
         /// </summary>
@@ -23,6 +23,7 @@ namespace Submarine.GameLogic.Models
         public PlayerModel(int playerId)
         {
             PlayerId = playerId;
+            Ships = new List<ShipBase>();
             ShotSpaces = new List<ICoordinate>();
         }
 
@@ -91,14 +92,14 @@ namespace Submarine.GameLogic.Models
             return list;
         }
 
-        // #TODO: Add adding Ships
-        // Create new ship
-
-
-        // Finalize Ship list
-
-
-
+        /// <summary>
+        /// Sets the Ships for a player
+        /// </summary>
+        /// <param name="ships">List of ships the player has set</param>
+        public void SetShips(List<ShipBase> shipList)
+        {
+            Ships = shipList;
+        }
 
         /// <summary>
         /// Checks if one of the players ships occupies the shot space
