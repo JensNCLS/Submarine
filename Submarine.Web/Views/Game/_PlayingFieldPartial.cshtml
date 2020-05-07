@@ -3,19 +3,38 @@
     <script>
         var count = 0;
         var maxSize = 0;
+        var grid = [
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
+                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",]
+            ];
 
         function clicked(event) {
-            var dataRow = event.getAttribute("data-row");
-            var dataCol = event.getAttribute("data-col");
+            var eventRow = parseInt(event.getAttribute("data-row"));    
+            var eventCol = parseInt(event.getAttribute("data-col"));
 
-            if(event.style.background == 'yellow' && count<maxSize) {
-                $(event).css('background', 'lightgray');
-                count++;
+            grid[eventRow][eventCol] = "clicked";
+
+            if (grid[eventRow+1][eventCol] == "empty" && grid[eventRow][eventCol] == "clicked") {
+
+                if(event.style.background == 'yellow' && count<maxSize) {
+                    $(event).css('background', 'lightgray');
+                    count++;
+                }
+                else if(event.style.background == 'red'){
+                    $(event).css('background', '');
+                    count--;
+                }
             }
-            else if(event.style.background == 'red'){
-                $(event).css('background', '');
-                count--;
-            }
+
+            
         }
 
         function hoverOver(event) {
@@ -43,12 +62,12 @@
     </script>
 </head>
 <body>
-@for (var i = 1; i < 11; i++)
+@for (int i = 0; i < 10; i++)
 {
     <div class="row no-gutters PlaceShipsRow">
-        @for (var j = 1; j < 11; j++)
+        @for (int j = 0; j < 10; j++)
         {
-            <div class="col field" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
+            <div class="col field" id="@i-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
 
             </div>
         }
