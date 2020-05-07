@@ -14,17 +14,23 @@
                 ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
                 ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
                 ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",]
-            ];
+        ];
+        var first = false;
+        var vertical = false;
+        var horizontal = false;
 
-        function clicked(event) {
+        function clicked(event)
+        {
             var eventRow = parseInt(event.getAttribute("data-row"));    
             var eventCol = parseInt(event.getAttribute("data-col"));
 
-            grid[eventRow][eventCol] = "clicked";
+            if (grid[eventRow][eventCol] == "empty" && !first)
+            {
+                grid[eventRow][eventCol] = "clicked";
+                first = true;
 
-            if (grid[eventRow+1][eventCol] == "empty" && grid[eventRow][eventCol] == "clicked") {
-
-                if(event.style.background == 'yellow' && count<maxSize) {
+                if (event.style.background == 'yellow' && count < maxSize)
+                {
                     $(event).css('background', 'lightgray');
                     count++;
                 }
@@ -33,8 +39,33 @@
                     count--;
                 }
             }
+            if (first) {
+                if (grid[eventRow][eventCol] == "empty" && grid[eventRow - 1][eventCol] == "clicked" && !vertical|| grid[eventRow][eventCol] == "empty" && grid[eventRow + 1][eventCol] == "clicked" && !vertical)
+                {
+                    horizontal = true;
+                    grid[eventRow][eventCol] = "clicked";
+                    if(event.style.background == 'yellow' && count<maxSize) {
+                        $(event).css('background', 'greenyellow');
+                        count++;
+                    }
+                }
 
+                if(grid[eventRow][eventCol] == "empty" && grid[eventRow][eventCol - 1] == "clicked" && !horizontal|| grid[eventRow][eventCol] == "empty" && grid[eventRow][eventCol + 1] == "clicked" && !horizontal) {
+                    vertical = true;
+                    grid[eventRow][eventCol] = "clicked";
+                    if(event.style.background == 'yellow' && count<maxSize) {
+                        $(event).css('background', 'greenyellow');
+                        count++;
+                    }
+                }
+            }
             
+            if (grid[eventRow][eventCol] == "clicked" && event.style.background == 'red' || grid[eventRow][eventCol] == "clicked" && event.style.background == 'darkred')
+            {
+                grid[eventRow][eventCol] = "empty";
+                $(event).css('background', '');
+                count--;
+            }
         }
 
         function hoverOver(event) {
@@ -43,6 +74,9 @@
             }
             if(event.style.background == "lightgray") {
                 $(event).css('background', 'red');
+            }
+            if(event.style.background == "greenyellow") {
+                $(event).css('background', 'darkred');
             }
         }
 
@@ -53,11 +87,17 @@
             if(event.style.background == "red") {
                 $(event).css('background', 'lightgray');
             }
+            if(event.style.background == "darkred") {
+                $(event).css('background', 'greenyellow');
+            }
         }
 
         function chosenShip(event) {
             count = 0;
-            maxSize = event.getAttribute("data-size");
+            maxSize = parseInt(event.getAttribute("data-size"));
+            first = false;
+            horizontal = false;
+            vertical = false;
         }
     </script>
 </head>
