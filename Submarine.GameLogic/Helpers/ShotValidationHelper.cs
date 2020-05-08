@@ -1,6 +1,8 @@
 ﻿using Submarine.GameLogic.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace Submarine.GameLogic.Helpers
@@ -53,7 +55,17 @@ namespace Submarine.GameLogic.Helpers
         /// <returns>Returns 'True' if the shot is a duplicate and 'False' if the shot hasn't been made before</returns>
         private bool CheckOnDuplicateShot(ICoordinate coordinate, List<ICoordinate> previouslyShotCoordinates)
         {
-            throw new NotImplementedException();
+            var dupeshot = previouslyShotCoordinates.Where(c => c.X == coordinate.X && c.Y == coordinate.Y).FirstOrDefault();
+            if (dupeshot != null)
+            {
+                Debug.WriteLine("ShotValidationHelper - CheckOnDuplicateShot - Shot on (" + coordinate.X + ", " + coordinate.Y + ") has already been made - DUPE");
+                return true;
+            }
+            else
+            {
+                Debug.WriteLine("ShotValidationHelper - CheckOnDuplicateShot - Shot on (" + coordinate.X + ", " + coordinate.Y + ") is original - OG SHOT");
+                return false;
+            }
         }
 
 
@@ -68,9 +80,13 @@ namespace Submarine.GameLogic.Helpers
             var playerId = battlefield.CheckPlayerLocation(coordinate);
             if (playerId == CurrentPlayerId)
             {
+                Debug.WriteLine("ShotValidationHelper - CheckOnSelfShooting - Player shot on self");
+                return true;
+            }
+            else
+            {
                 return false;
             }
-            return true;
         }
 
     }

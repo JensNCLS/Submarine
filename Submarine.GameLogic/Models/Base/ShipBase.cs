@@ -86,13 +86,13 @@ namespace Submarine.GameLogic.Models.Base
             {
                 if (previouslyShot == null)
                 {
-                    Debug.WriteLine("Ship " + ShipId + " got shot on " + shotCoordinate.X + ", " + shotCoordinate.Y + " - HIT");
+                    Debug.WriteLine("Ship " + ShipId + " got shot on (" + shotCoordinate.X + ", " + shotCoordinate.Y + ") - HIT");
                     DamagedSpaces.Add(shotCoordinate);
                     return true;
                 }
                 else
                 {
-                    Debug.WriteLine("Ship " + ShipId + " got shot AGAIN on " + shotCoordinate.X + ", " + shotCoordinate.Y + " - Counted as MISS");
+                    Debug.WriteLine("Ship " + ShipId + " got shot AGAIN on (" + shotCoordinate.X + ", " + shotCoordinate.Y + ") - Counted as MISS");
                     // This space has already been damaged
                     return false;
                 }
