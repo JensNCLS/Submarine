@@ -65,6 +65,14 @@ namespace Submarine.GameLogic.Models
         }
 
 
+        // Set Ships of player
+        public void SetShipsOfPlayer(IPlayer player, List<ShipBase> ships)
+        {
+            player.SetShips(ships);
+        }
+
+
+
         // #1
         /// <summary>
         /// Starts the Battle (requires ships to be set for all players)
@@ -142,18 +150,16 @@ namespace Submarine.GameLogic.Models
         /// <summary>
         /// Ends the current turn and checks for the Game Over-state
         /// </summary>
-        public void EndTurn()
+        /// <returns>Returns PlayerModel of the player in case someone lost all ships. Returns 'null' when one-one died</returns>
+        public IPlayer EndTurn()
         {
             var deadPlayer = CheckAliveStates(Players);
             if (deadPlayer != null)
             {
                 Debug.WriteLine("GameModel - EndTurn - Game Over stated. ");
-                Debug.WriteLine("Player " + deadPlayer.PlayerId + " died");
+                Debug.WriteLine("Player " + deadPlayer.PlayerId + " died");                
             }
-            else
-            {
-                ChangeTurn();
-            }
+            return deadPlayer;
         }
 
 
@@ -225,11 +231,6 @@ namespace Submarine.GameLogic.Models
         }
 
 
-        // Set Ships of player
-        public void SetShipsOfPlayer(IPlayer player, List<ShipBase> ships)
-        {
-            player.SetShips(ships);
-        }
 
 
 
