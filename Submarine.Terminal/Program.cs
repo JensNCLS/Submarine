@@ -73,7 +73,7 @@ namespace Submarine.Terminal
                 TextHelper.ShowText("Did the player hit something? " + isHit.ToString());
 
                 Game.EndTurn();
-                //Game.ChangeTurn();
+                Game.ChangeTurn();
             }
 
 
