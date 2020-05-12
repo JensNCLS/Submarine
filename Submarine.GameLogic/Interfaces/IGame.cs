@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Interfaces
 {
-    interface IGame
+    public interface IGame
     {
         // Properties
         string LobbyId { get; set; }
@@ -15,8 +15,5 @@ namespace Submarine.GameLogic.Interfaces
 
         // Methods
         string NewGame(int amountOfPlayers);
-
-        bool ShootProjectile(ICoordinate shotCoordinate);
-        // #TODO Check Game State
     }
 }

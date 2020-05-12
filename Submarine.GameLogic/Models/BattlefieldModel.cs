@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models
 {
-    class BattlefieldModel : IBattlefield
+    public class BattlefieldModel : IBattlefield
     {
         // Properties
         public int BattlefieldWidth { get; }
@@ -70,9 +70,6 @@ namespace Submarine.GameLogic.Models
             return true;
         }
 
-
-
-
         /// <summary>
         /// Checks which PlayerId is on the given coordinate
         /// </summary>
@@ -80,21 +77,31 @@ namespace Submarine.GameLogic.Models
         /// <returns>Returns the PlayerId of the given coordinate</returns>
         public int CheckPlayerLocation(ICoordinate coordinate)
         {
-            //int playerId = 0;
+            int playerId = -1;
+            int Xinp = coordinate.X;
+            int Yinp = coordinate.Y;
 
-            //foreach (IPlayerLocation playerLocation in PlayerPositions)
-            //{
-            //    // Check welke coordinaten binnen deze dingen vallen
-            //}
+            foreach (IPlayerLocation playerLocation in PlayerPositions)
+            {
+                // Check welke coordinaten binnen deze dingen vallen
+                
+                if (Xinp >= playerLocation.StartCoordinate.X  && Xinp <= playerLocation.EndCoordinate.X)
+                {
+                    if (Yinp >= playerLocation.StartCoordinate.Y && Yinp <= playerLocation.EndCoordinate.Y)
+                    {
+                        playerId = playerLocation.PlayerId;
+                    }
+                }
+            }
 
+            if (playerId == -1)
+            {
+                throw new Exception("BattlefieldModel - Shot was out of bounds");
+            }
 
-
-
-            //return playerId;
-
-            throw new NotImplementedException();
+            Debug.WriteLine("BattlefieldModel - CheckPlayerLocation - Battlearea of Player " + playerId + " got shot");
+            return playerId;
         }
-
 
         /// <summary>
         /// Creates a list with draft positions for the battlefield

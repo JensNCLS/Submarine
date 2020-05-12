@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Interfaces
 {
-    interface ICoordinate
+    public interface ICoordinate
     {
         // Properties
         int X { get; set; }
