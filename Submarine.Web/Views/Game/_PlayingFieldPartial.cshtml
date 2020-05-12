@@ -4,24 +4,21 @@
         var count = 0;
         var maxSize = 0;
         var grid = [
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",]
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]],
+            [["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"], ["empty", "empty"]]
         ];
         var first = false;
         var vertical = false;
         var horizontal = false;
-
-        if (count == maxSize) {
-            event.setAttribute('data-name', '');
-        }
+        var shipName = "";
 
         function clicked(event)
         {
@@ -30,49 +27,54 @@
             var eventName = parseInt(event.getAttribute("data-name"));
             
 
-            if (grid[eventRow][eventCol] == "empty" && !first)
+            if (grid[eventRow][eventCol][0] == "empty" && !first)
             {
-                grid[eventRow][eventCol] = "clicked";
+                grid[eventRow][eventCol][0] = "clicked";
+                grid[eventRow][eventCol][1] = shipName;
                 first = true;
 
                 if (event.style.background == 'yellow' && count < maxSize)
                 {
                     $(event).css('background', 'lightgray');
                     count++;
-                    event.setAttribute('data-name', maxSize);
                 }
                 else if(event.style.background == 'red'){
                     $(event).css('background', '');
                     count--;
-                    event.setAttribute('data-name', '');
                 }
             }
             if (first) {
-                if (grid[eventRow][eventCol] == "empty" && grid[eventRow - 1][eventCol] == "clicked" && !vertical || grid[eventRow][eventCol] == "empty" && grid[eventRow + 1][eventCol] == "clicked" && !vertical)
+                if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                (grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName
+                    || grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName))
                 {
                     horizontal = true;
-                    grid[eventRow][eventCol] = "clicked";
+                    grid[eventRow][eventCol][0] = "clicked";
+                    grid[eventRow][eventCol][1] = shipName;
                     if(event.style.background == 'yellow' && count<maxSize) {
                         $(event).css('background', 'greenyellow');
                         count++;
-                        event.setAttribute('data-name', maxSize);
                     }
                 }
 
-                if(grid[eventRow][eventCol] == "empty" && grid[eventRow][eventCol - 1] == "clicked" && !horizontal|| grid[eventRow][eventCol] == "empty" && grid[eventRow][eventCol + 1] == "clicked" && !horizontal) {
+                if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    (grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName
+                        || grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName))
+                {
                     vertical = true;
-                    grid[eventRow][eventCol] = "clicked";
+                    grid[eventRow][eventCol][0] = "clicked";
+                    grid[eventRow][eventCol][1] = shipName;
                     if(event.style.background == 'yellow' && count<maxSize) {
                         $(event).css('background', 'greenyellow');
                         count++;
-                        event.setAttribute('data-name', maxSize);
                     }
                 }
             }
             
-            if (grid[eventRow][eventCol] == "clicked" && event.style.background == 'red' || grid[eventRow][eventCol] == "clicked" && event.style.background == 'darkred')
+            if (grid[eventRow][eventCol][0] == "clicked" && (event.style.background == 'red' || event.style.background == 'darkred'))
             {
-                grid[eventRow][eventCol] = "empty";
+                grid[eventRow][eventCol][0] = "empty";
+                grid[eventRow][eventCol][1] = "empty";
                 $(event).css('background', '');
                 count--;
                 event.setAttribute('data-name', '');
@@ -105,10 +107,28 @@
 
         function chosenShip(event) {
             count = 0;
-            maxSize = parseInt(event.getAttribute("data-size"));
+            shipName = event.getAttribute("data-size");
             first = false;
             horizontal = false;
             vertical = false;
+
+            switch (shipName) {
+                case "extraLarge":
+                    maxSize = 5;
+                    break;
+                case "large":
+                    maxSize = 4;
+                    break;
+                case "medium":
+                    maxSize = 3;
+                    break;
+                case "mediumsub":
+                    maxSize = 3;
+                    break;
+                case "small":
+                    maxSize = 2;
+                    break;
+            }
         }
     </script>
 </head>
