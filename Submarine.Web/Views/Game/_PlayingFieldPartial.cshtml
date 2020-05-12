@@ -19,10 +19,16 @@
         var vertical = false;
         var horizontal = false;
 
+        if (count == maxSize) {
+            event.setAttribute('data-name', '');
+        }
+
         function clicked(event)
         {
             var eventRow = parseInt(event.getAttribute("data-row"));    
             var eventCol = parseInt(event.getAttribute("data-col"));
+            var eventName = parseInt(event.getAttribute("data-name"));
+            
 
             if (grid[eventRow][eventCol] == "empty" && !first)
             {
@@ -33,20 +39,23 @@
                 {
                     $(event).css('background', 'lightgray');
                     count++;
+                    event.setAttribute('data-name', maxSize);
                 }
                 else if(event.style.background == 'red'){
                     $(event).css('background', '');
                     count--;
+                    event.setAttribute('data-name', '');
                 }
             }
             if (first) {
-                if (grid[eventRow][eventCol] == "empty" && grid[eventRow - 1][eventCol] == "clicked" && !vertical|| grid[eventRow][eventCol] == "empty" && grid[eventRow + 1][eventCol] == "clicked" && !vertical)
+                if (grid[eventRow][eventCol] == "empty" && grid[eventRow - 1][eventCol] == "clicked" && !vertical || grid[eventRow][eventCol] == "empty" && grid[eventRow + 1][eventCol] == "clicked" && !vertical)
                 {
                     horizontal = true;
                     grid[eventRow][eventCol] = "clicked";
                     if(event.style.background == 'yellow' && count<maxSize) {
                         $(event).css('background', 'greenyellow');
                         count++;
+                        event.setAttribute('data-name', maxSize);
                     }
                 }
 
@@ -56,6 +65,7 @@
                     if(event.style.background == 'yellow' && count<maxSize) {
                         $(event).css('background', 'greenyellow');
                         count++;
+                        event.setAttribute('data-name', maxSize);
                     }
                 }
             }
@@ -65,6 +75,7 @@
                 grid[eventRow][eventCol] = "empty";
                 $(event).css('background', '');
                 count--;
+                event.setAttribute('data-name', '');
             }
         }
 
