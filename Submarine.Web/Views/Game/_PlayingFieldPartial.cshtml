@@ -36,6 +36,9 @@
                         grid[eventRow][eventCol][0] = "clicked";
                         grid[eventRow][eventCol][1] = shipName;
                         placedShips[i][1] = eventRow + "" + eventCol;
+                        $("#" + shipName).css('filter', "alpha(opacity:30)");
+                        $("#" + shipName).css('opacity', '.30');
+                        $("#" + shipName).css('background-color', '#111');
                         firstIsPlaced = true;
 
                         if (event.style.background == 'yellow' && count < maxSize)
@@ -297,6 +300,9 @@
                         count--;
                         event.setAttribute('data-name', '');
                         placedShips[i][1] = "notplaced";
+                        $("#" + shipName).css('filter', "");
+                        $("#" + shipName).css('opacity', '');
+                        $("#" + shipName).css('background-color', '');
                     }
                 }
             }
