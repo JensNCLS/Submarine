@@ -90,6 +90,9 @@ body {
     height: 68px;
     width: 333px;
     margin-top: 20px;
+    filter: alpha(opacity=30);
+    opacity: .30;
+    background-color: #111;
 }
     .btn-shipbuttons:hover {
         color: #fff;

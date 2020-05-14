@@ -19,7 +19,7 @@
         var vertical = false;
         var horizontal = false;
         var shipName = "";
-        var placedShips = [["extraLarge", 1], ["large", 1], ["medium", 1], ["mediumsub", 1], ["small", 1]];
+        var placedShips = [["extraLarge", "notplaced"], ["large", "notplaced"], ["medium", "notplaced"], ["submedium", "notplaced"], ["small", "notplaced"]];
 
         function clicked(event)
         {
@@ -29,18 +29,25 @@
 
             if (grid[eventRow][eventCol][0] == "empty" && !firstIsPlaced)
             {
-                grid[eventRow][eventCol][0] = "clicked";
-                grid[eventRow][eventCol][1] = shipName;
-                firstIsPlaced = true;
-
-                if (event.style.background == 'yellow' && count < maxSize)
+                for (var i = 0; i < placedShips.length; i++)
                 {
-                    $(event).css('background', 'lightgray');
-                    count++;
-                }
-                else if(event.style.background == 'red'){
-                    $(event).css('background', '');
-                    count--;
+                    if (placedShips[i][0] == shipName && placedShips[i][1] == "notplaced")
+                    {
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        placedShips[i][1] = eventRow + "" + eventCol;
+                        firstIsPlaced = true;
+
+                        if (event.style.background == 'yellow' && count < maxSize)
+                        {
+                            $(event).css('background', 'lightgray');
+                            count++;
+                        }
+                        else if(event.style.background == 'red'){
+                            $(event).css('background', '');
+                            count--;
+                        }
+                    }
                 }
             }
             if (firstIsPlaced)
@@ -279,8 +286,23 @@
                 }
             }
 
+            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'red') {
+                for (var i = 0; i < placedShips.length; i++)
+                {
+                    if (placedShips[i][0] == shipName && placedShips[i][1] == eventRow + "" + eventCol)
+                    {
+                        grid[eventRow][eventCol][0] = "empty";
+                        grid[eventRow][eventCol][1] = "empty";
+                        $(event).css('background', '');
+                        count--;
+                        event.setAttribute('data-name', '');
+                        placedShips[i][1] = "notplaced";
+                    }
+                }
+            }
 
-            if (grid[eventRow][eventCol][0] == "clicked" && (event.style.background == 'red' || event.style.background == 'darkred'))
+
+            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'darkred')
             {
                 grid[eventRow][eventCol][0] = "empty";
                 grid[eventRow][eventCol][1] = "empty";
@@ -331,7 +353,7 @@
                 case "medium":
                     maxSize = 3;
                     break;
-                case "mediumsub":
+                case "submedium":
                     maxSize = 3;
                     break;
                 case "small":
