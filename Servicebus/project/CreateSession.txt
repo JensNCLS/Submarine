@@ -1,0 +1,55 @@
+
+        public async void OnPostStartHost(string name)
+        {
+            // check if handler is empty, if so create an instance of it
+            if (ServiceBusHandler.program == null)
+            {
+                // initialise SessionCodeGenerator
+                SessionCodeGenerator generator = new SessionCodeGenerator();
+
+                // Generade sessionCode
+                string sessionCode = generator.GenerateSessionCode();
+
+                StaticResources.sessionCode = sessionCode;
+
+                // Set player data
+                Player player = new Player();
+                player.name = name;
+                player.type = PlayerType.Host;
+                player.orderNumber = 1;
+
+                // create an instance of the servicebus handler
+                bool initialised = await ServiceBusHandler.InitiateServiceBusHandler(player, true);
+                bool created = await ServiceBusHandler.program.CreateQueueListner(PlayerType.Host);
+
+                ServiceBusHandler.program.QueueListner.MessageReceived += OnQueueMessageReceived;
+                ServiceBusHandler.program.topic.MessageReceived += OnTopicMessageReceived;
+
+            }
+
+            sessionCode = StaticResources.sessionCode;
+            players = StaticResources.PlayerList;
+
+        }
+
+        public void OnQueueMessageReceived(string message)
+        {
+            Transfer transfer = JsonConvert.DeserializeObject<Transfer>(message);
+
+            if (transfer.type == MessageType.JoinRequest)
+            {
+                ServiceBusHandler.HandleQueueMessage(message);
+            }
+        }
+
+        public void OnTopicMessageReceived(string message)
+        {
+            Transfer transfer = JsonConvert.DeserializeObject<Transfer>(message);
+
+            if (transfer.type == MessageType.NewPlayer)
+            {
+                ServiceBusHandler.HandleNewPlayerTopicMessage(message);
+                sessionCode = StaticResources.sessionCode;
+                players = StaticResources.PlayerList;
+            }
+        }
