@@ -72,6 +72,110 @@
                         }
                     }
                 }
+                else if (eventRow == 0 && eventCol == 0)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 0 && eventCol == 9)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 9 && eventCol == 0)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 9 && eventCol == 9)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
                 else if (eventRow == 9) {
                     if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
                 (grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName
