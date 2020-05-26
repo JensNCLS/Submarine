@@ -224,7 +224,7 @@ $.validator.addMethod( "cifES", function( value, element ) {
 		// Odd positions
 		if ( isOdd( i ) ) {
 
-			// Odd positions are multiplied first.
+			// Odd positions are multiplied firstIsPlaced.
 			n *= 2;
 
 			// If the multiplication is bigger than 10 we need to adjust
@@ -300,12 +300,12 @@ $.validator.addMethod( "cpfBR", function( value ) {
 		return false;
 	}
 
-	// Step 1 - using first Check Number:
+	// Step 1 - using firstIsPlaced Check Number:
 	for ( i = 1; i <= 9; i++ ) {
 		sum = sum + parseInt( value.substring( i - 1, i ), 10 ) * ( 11 - i );
 	}
 
-	// If first Check Number (CN) is valid, move to Step 2 - using second Check Number:
+	// If firstIsPlaced Check Number (CN) is valid, move to Step 2 - using second Check Number:
 	if ( checkResult( sum, firstCN ) ) {
 		sum = 0;
 		for ( i = 1; i <= 10; i++ ) {
@@ -647,7 +647,7 @@ $.validator.addMethod( "iban", function( value, element ) {
 		}
 	}
 
-	// Now check the checksum, first convert to digits
+	// Now check the checksum, firstIsPlaced convert to digits
 	ibancheck = iban.substring( 4, iban.length ) + iban.substring( 0, 4 );
 	for ( i = 0; i < ibancheck.length; i++ ) {
 		charAt = ibancheck.charAt( i );

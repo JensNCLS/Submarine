@@ -4,67 +4,317 @@
         var count = 0;
         var maxSize = 0;
         var grid = [
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",],
-                ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty",]
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]]
         ];
-        var first = false;
+        var firstIsPlaced = false;
         var vertical = false;
         var horizontal = false;
+        var shipName = "";
+        var placedShips = [["extraLarge", "notplaced"], ["large", "notplaced"], ["medium", "notplaced"], ["submedium", "notplaced"], ["small", "notplaced"]];
 
         function clicked(event)
         {
             var eventRow = parseInt(event.getAttribute("data-row"));    
             var eventCol = parseInt(event.getAttribute("data-col"));
 
-            if (grid[eventRow][eventCol] == "empty" && !first)
-            {
-                grid[eventRow][eventCol] = "clicked";
-                first = true;
 
-                if (event.style.background == 'yellow' && count < maxSize)
+            if (grid[eventRow][eventCol][0] == "empty" && !firstIsPlaced)
+            {
+                for (var i = 0; i < placedShips.length; i++)
                 {
-                    $(event).css('background', 'lightgray');
-                    count++;
-                }
-                else if(event.style.background == 'red'){
-                    $(event).css('background', '');
-                    count--;
+                    if (placedShips[i][0] == shipName && placedShips[i][1] == "notplaced")
+                    {
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        placedShips[i][1] = eventRow + "" + eventCol;
+                        $("#" + shipName).css('filter', "alpha(opacity:30)");
+                        $("#" + shipName).css('opacity', '.30');
+                        $("#" + shipName).css('background-color', '#111');
+                        firstIsPlaced = true;
+
+                        if (event.style.background == 'yellow' && count < maxSize)
+                        {
+                            $(event).css('background', 'lightgray');
+                            count++;
+                        }
+                        else if(event.style.background == 'red'){
+                            $(event).css('background', '');
+                            count--;
+                        }
+                    }
                 }
             }
-            if (first) {
-                if (grid[eventRow][eventCol] == "empty" && grid[eventRow - 1][eventCol] == "clicked" && !vertical|| grid[eventRow][eventCol] == "empty" && grid[eventRow + 1][eventCol] == "clicked" && !vertical)
+            if (firstIsPlaced)
+            {
+                if (eventRow < 9 && eventRow > 0 && eventCol > 0 && eventCol < 9)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    (grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName
+                        || grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName))
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    (grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName
+                        || grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName))
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 0 && eventCol == 0)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 0 && eventCol == 9)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 9 && eventCol == 0)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 9 && eventCol == 9)
+                {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventRow == 9) {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                (grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName
+                    || grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName))
                 {
                     horizontal = true;
-                    grid[eventRow][eventCol] = "clicked";
+                    grid[eventRow][eventCol][0] = "clicked";
+                    grid[eventRow][eventCol][1] = shipName;
                     if(event.style.background == 'yellow' && count<maxSize) {
                         $(event).css('background', 'greenyellow');
                         count++;
                     }
                 }
 
-                if(grid[eventRow][eventCol] == "empty" && grid[eventRow][eventCol - 1] == "clicked" && !horizontal|| grid[eventRow][eventCol] == "empty" && grid[eventRow][eventCol + 1] == "clicked" && !horizontal) {
+                if (grid[eventRow][eventCol][0] == "empty" && !horizontal && grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName)
+                {
                     vertical = true;
-                    grid[eventRow][eventCol] = "clicked";
+                    grid[eventRow][eventCol][0] = "clicked";
+                    grid[eventRow][eventCol][1] = shipName;
                     if(event.style.background == 'yellow' && count<maxSize) {
                         $(event).css('background', 'greenyellow');
                         count++;
                     }
                 }
+                }
+                else if (eventRow == 0) {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical &&
+                    (grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName
+                        || grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName))
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal && grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName)
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventCol == 0) {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical && grid[eventRow][eventCol + 1][0] == "clicked" && grid[eventRow][eventCol + 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    (grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName
+                        || grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName))
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
+                else if (eventCol == 9) {
+                    if (grid[eventRow][eventCol][0] == "empty" && !vertical && grid[eventRow][eventCol - 1][0] == "clicked" && grid[eventRow][eventCol - 1][1] == shipName)
+                    {
+                        horizontal = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+
+                    if (grid[eventRow][eventCol][0] == "empty" && !horizontal &&
+                    (grid[eventRow - 1][eventCol][0] == "clicked" && grid[eventRow - 1][eventCol][1] == shipName
+                        || grid[eventRow + 1][eventCol][0] == "clicked" && grid[eventRow + 1][eventCol][1] == shipName))
+                    {
+                        vertical = true;
+                        grid[eventRow][eventCol][0] = "clicked";
+                        grid[eventRow][eventCol][1] = shipName;
+                        if(event.style.background == 'yellow' && count<maxSize) {
+                            $(event).css('background', 'greenyellow');
+                            count++;
+                        }
+                    }
+                }
             }
-            
-            if (grid[eventRow][eventCol] == "clicked" && event.style.background == 'red' || grid[eventRow][eventCol] == "clicked" && event.style.background == 'darkred')
+
+            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'red') {
+                for (var i = 0; i < placedShips.length; i++)
+                {
+                    if (placedShips[i][0] == shipName && placedShips[i][1] == eventRow + "" + eventCol)
+                    {
+                        grid[eventRow][eventCol][0] = "empty";
+                        grid[eventRow][eventCol][1] = "empty";
+                        $(event).css('background', '');
+                        count--;
+                        event.setAttribute('data-name', '');
+                        placedShips[i][1] = "notplaced";
+                        $("#" + shipName).css('filter', "");
+                        $("#" + shipName).css('opacity', '');
+                        $("#" + shipName).css('background-color', '');
+                    }
+                }
+            }
+
+
+            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'darkred')
             {
-                grid[eventRow][eventCol] = "empty";
+                grid[eventRow][eventCol][0] = "empty";
+                grid[eventRow][eventCol][1] = "empty";
                 $(event).css('background', '');
                 count--;
+                event.setAttribute('data-name', '');
             }
         }
 
@@ -94,10 +344,28 @@
 
         function chosenShip(event) {
             count = 0;
-            maxSize = parseInt(event.getAttribute("data-size"));
-            first = false;
+            shipName = event.getAttribute("data-size");
+            firstIsPlaced = false;
             horizontal = false;
             vertical = false;
+
+            switch (shipName) {
+                case "extraLarge":
+                    maxSize = 5;
+                    break;
+                case "large":
+                    maxSize = 4;
+                    break;
+                case "medium":
+                    maxSize = 3;
+                    break;
+                case "submedium":
+                    maxSize = 3;
+                    break;
+                case "small":
+                    maxSize = 2;
+                    break;
+            }
         }
     </script>
 </head>
