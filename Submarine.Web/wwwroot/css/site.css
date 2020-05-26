@@ -161,6 +161,22 @@ body {
     background-image: url(Images/water13.png)
 }
 
+.PlayfieldFriendly {
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    height: 80vh;
+    width: 80vh;
+}
+
+.PlayfieldEnemy {
+    position: absolute;
+    right: 10%;
+    top: 15%;
+    height: 80vh;
+    width: 80vh;
+}
+
 .PlaceShips {
     position: absolute;
     left: 20%;
