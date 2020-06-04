@@ -295,23 +295,23 @@
                 }
             }
 
-            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'red' && placing == false) {
-                var removedShip = "";
+            if (grid[eventRow][eventCol][0] == "clicked"  && placing == false && (event.style.background == 'red'|| event.style.background == 'darkred')) {
+                var removedShip = grid[eventRow][eventCol][1];
 
                 for (var i = 0; i < placedShips.length; i++)
                 {
-                    if (placedShips[i][0] == shipName && placedShips[i][1] == eventRow + "" + eventCol)
+                    if (placedShips[i][0] == removedShip && placedShips[i][1] == eventRow + "" + eventCol)
                     {
                         grid[eventRow][eventCol][0] = "empty";
-                        removedShip = grid[eventRow][eventCol][1];
+                        //removedShip = grid[eventRow][eventCol][1];
                         grid[eventRow][eventCol][1] = "empty";
                         $(event).css('background', '');
                         count--;
                         event.setAttribute('data-name', '');
                         placedShips[i][1] = "notplaced";
-                        $("#" + shipName).css('filter', "");
-                        $("#" + shipName).css('opacity', '');
-                        $("#" + shipName).css('background-color', '');
+                        $("#" + removedShip).css('filter', "");
+                        $("#" + removedShip).css('opacity', '');
+                        $("#" + removedShip).css('background-color', '');
                     }
                 }
 
