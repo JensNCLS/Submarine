@@ -18,6 +18,7 @@
         var firstIsPlaced = false;
         var vertical = false;
         var horizontal = false;
+        var placing = false;
         var shipName = "";
         var placedShips = [["extraLarge", "notplaced"], ["large", "notplaced"], ["medium", "notplaced"], ["submedium", "notplaced"], ["small", "notplaced"]];
 
@@ -53,6 +54,11 @@
                     }
                 }
             }
+
+            if (count >= maxSize) {
+                placing = false;
+            }
+
             if (firstIsPlaced)
             {
                 if (eventRow < 9 && eventRow > 0 && eventCol > 0 && eventCol < 9)
@@ -289,12 +295,15 @@
                 }
             }
 
-            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'red') {
+            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'red' && placing == false) {
+                var removedShip = "";
+
                 for (var i = 0; i < placedShips.length; i++)
                 {
                     if (placedShips[i][0] == shipName && placedShips[i][1] == eventRow + "" + eventCol)
                     {
                         grid[eventRow][eventCol][0] = "empty";
+                        removedShip = grid[eventRow][eventCol][1];
                         grid[eventRow][eventCol][1] = "empty";
                         $(event).css('background', '');
                         count--;
@@ -305,17 +314,29 @@
                         $("#" + shipName).css('background-color', '');
                     }
                 }
+
+                for (var r = 0; r < grid.length; r++) {
+                    for (var c = 0; c < grid[r].length; c++) {
+                        if (grid[r][c][1] == removedShip) {
+                            grid[eventRow][eventCol][0] = "empty";
+                            grid[eventRow][eventCol][1] = "empty";
+                            $("#r-" + r + "-c-" + c).css('background', '');
+                            count--;
+                            event.setAttribute('data-name', '');
+                        }
+                    }
+                }
             }
 
 
-            if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'darkred')
-            {
-                grid[eventRow][eventCol][0] = "empty";
-                grid[eventRow][eventCol][1] = "empty";
-                $(event).css('background', '');
-                count--;
-                event.setAttribute('data-name', '');
-            }
+            //if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'darkred')
+            //{
+            //    grid[eventRow][eventCol][0] = "empty";
+            //    grid[eventRow][eventCol][1] = "empty";
+            //    $(event).css('background', '');
+            //    count--;
+            //    event.setAttribute('data-name', '');
+            //}
         }
 
         function hoverOver(event) {
@@ -348,6 +369,7 @@
             firstIsPlaced = false;
             horizontal = false;
             vertical = false;
+            placing = true;
 
             switch (shipName) {
                 case "extraLarge":
@@ -375,7 +397,7 @@
     <div class="row no-gutters PlaceShipsRow">
         @for (int j = 0; j < 10; j++)
         {
-            <div class="col field" id="@i-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
+            <div class="col field" id="r-@i-c-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
 
             </div>
         }
