@@ -20,7 +20,7 @@
         var horizontal = false;
         var placing = false;
         var shipName = "";
-        var placedShips = [["extraLarge", "notplaced"], ["large", "notplaced"], ["medium", "notplaced"], ["submedium", "notplaced"], ["small", "notplaced"]];
+        //var placedShips = [["extraLarge", "notplaced"], ["large", "notplaced"], ["medium", "notplaced"], ["submedium", "notplaced"], ["small", "notplaced"]];
 
         function clicked(event)
         {
@@ -30,13 +30,13 @@
 
             if (grid[eventRow][eventCol][0] == "empty" && !firstIsPlaced)
             {
-                for (var i = 0; i < placedShips.length; i++)
-                {
-                    if (placedShips[i][0] == shipName && placedShips[i][1] == "notplaced")
-                    {
+                //for (var i = 0; i < placedShips.length; i++)
+                //{
+                //    if (placedShips[i][0] == shipName && placedShips[i][1] == "notplaced")
+                //    {
                         grid[eventRow][eventCol][0] = "clicked";
                         grid[eventRow][eventCol][1] = shipName;
-                        placedShips[i][1] = eventRow + "" + eventCol;
+                        //placedShips[i][1] = eventRow + "" + eventCol;
                         $("#" + shipName).css('filter', "alpha(opacity:30)");
                         $("#" + shipName).css('opacity', '.30');
                         $("#" + shipName).css('background-color', '#111');
@@ -50,8 +50,8 @@
                         else if(event.style.background == 'red'){
                             $(event).css('background', '');
                             count--;
-                        }
-                    }
+                    //    }
+                    //}
                 }
             }
 
@@ -298,21 +298,18 @@
             if (grid[eventRow][eventCol][0] == "clicked"  && placing == false && (event.style.background == 'red'|| event.style.background == 'darkred')) {
                 var removedShip = grid[eventRow][eventCol][1];
 
-                for (var i = 0; i < placedShips.length; i++)
-                {
-                    if (placedShips[i][0] == removedShip && placedShips[i][1] == eventRow + "" + eventCol)
-                    {
-                        grid[eventRow][eventCol][0] = "empty";
-                        grid[eventRow][eventCol][1] = "empty";
-                        $(event).css('background', '');
-                        count--;
-                        event.setAttribute('data-name', '');
-                        placedShips[i][1] = "notplaced";
-                        //$("#" + removedShip).css('filter', "");
-                        //$("#" + removedShip).css('opacity', '');
-                        //$("#" + removedShip).css('background-color', '');
-                    }
-                }
+                //for (var i = 0; i < placedShips.length; i++)
+                //{
+                //    if (placedShips[i][0] == removedShip && placedShips[i][1] == eventRow + "" + eventCol)
+                //    {
+                        //grid[eventRow][eventCol][0] = "empty";
+                        //grid[eventRow][eventCol][1] = "empty";
+                        //$(event).css('background', '');
+                        //count--;
+                        //event.setAttribute('data-name', '');
+                        //placedShips[i][1] = "notplaced";
+                //    }
+                //}
 
                 for (var r = 0; r < grid.length; r++) {
                     for (var c = 0; c < grid[r].length; c++) {
@@ -330,16 +327,6 @@
                 $("#" + removedShip).css('opacity', '');
                 $("#" + removedShip).css('background-color', '');
             }
-
-
-            //if (grid[eventRow][eventCol][0] == "clicked" && event.style.background == 'darkred')
-            //{
-            //    grid[eventRow][eventCol][0] = "empty";
-            //    grid[eventRow][eventCol][1] = "empty";
-            //    $(event).css('background', '');
-            //    count--;
-            //    event.setAttribute('data-name', '');
-            //}
         }
 
         function hoverOver(event) {
