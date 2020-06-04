@@ -303,29 +303,32 @@
                     if (placedShips[i][0] == removedShip && placedShips[i][1] == eventRow + "" + eventCol)
                     {
                         grid[eventRow][eventCol][0] = "empty";
-                        //removedShip = grid[eventRow][eventCol][1];
                         grid[eventRow][eventCol][1] = "empty";
                         $(event).css('background', '');
                         count--;
                         event.setAttribute('data-name', '');
                         placedShips[i][1] = "notplaced";
-                        $("#" + removedShip).css('filter', "");
-                        $("#" + removedShip).css('opacity', '');
-                        $("#" + removedShip).css('background-color', '');
+                        //$("#" + removedShip).css('filter', "");
+                        //$("#" + removedShip).css('opacity', '');
+                        //$("#" + removedShip).css('background-color', '');
                     }
                 }
 
                 for (var r = 0; r < grid.length; r++) {
                     for (var c = 0; c < grid[r].length; c++) {
                         if (grid[r][c][1] == removedShip) {
-                            grid[eventRow][eventCol][0] = "empty";
-                            grid[eventRow][eventCol][1] = "empty";
-                            $("#r-" + r + "-c-" + c).css('background', '');
+                            grid[r][c][0] = "empty";
+                            grid[r][c][1] = "empty";
+                            $("#" + r + "-" + c).css('background', '');
                             count--;
                             event.setAttribute('data-name', '');
                         }
                     }
                 }
+
+                $("#" + removedShip).css('filter', "");
+                $("#" + removedShip).css('opacity', '');
+                $("#" + removedShip).css('background-color', '');
             }
 
 
@@ -397,7 +400,7 @@
     <div class="row no-gutters PlaceShipsRow">
         @for (int j = 0; j < 10; j++)
         {
-            <div class="col field" id="r-@i-c-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
+            <div class="col field" id="@i-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
 
             </div>
         }
