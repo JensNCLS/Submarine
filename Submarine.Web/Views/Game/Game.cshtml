@@ -16,18 +16,7 @@
         loadFriendlyView();
     };
 
-    var gridFriendly = [
-        [["clicked", "small"], ["clicked", "small"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["clicked", "extraLarge"], ["clicked", "extraLarge"], ["clicked", "extraLarge"], ["clicked", "extraLarge"], ["clicked", "extraLarge"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", "large"], ["clicked", "large"], ["clicked", "large"], ["clicked", "large"], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["clicked", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["clicked", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", "medium"], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["clicked", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", "medium"], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", "medium"], ["empty", ""]]
-    ];
+    var gridFriendly = JSON.parse(window.localStorage.getItem("grid")); // Retrieving grid
     var gridEnemy = [
         [["occupied", "small"], ["occupied", "small"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
@@ -103,7 +92,6 @@
                     }
                 </div>
             }
-            @*<partial name="_PlayingFieldFriendlyPartial" />*@
         </div>
         <div id="playfieldEnemy" class="container PlayfieldEnemy">
             <h1>Enemy</h1>
@@ -118,7 +106,6 @@
                     }
                 </div>
             }
-            @*<partial name="_PlayingFieldEnemyPartial" />*@
         </div>
     </div>
 </body>

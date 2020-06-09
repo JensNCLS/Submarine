@@ -14,7 +14,7 @@
     }
 </style>
 
-@*<script>
+<script>
     var count = 0;
     var maxSize = 0;
     var grid = [
@@ -374,7 +374,25 @@
             }
         }
     }
-</script>*@
+
+    function submitShips() {
+        var count = 0;
+
+        for (var r = 0; r < grid.length; r++) {
+            for (var c = 0; c < grid[r].length; c++) {
+                if (grid[r][c][0] == "clicked") {
+                    count += 1;
+                }
+            }
+        }
+
+        if (count == 17) {
+            var url = '@Url.Action("Game", "Game")';
+            window.location.href = url;
+            window.localStorage.setItem("grid", JSON.stringify(grid)); // Saving grid
+        }
+    }
+</script>
 
 <body>
     <div class="ChooseShips">
@@ -384,23 +402,22 @@
         <button id="submedium" type="button" class="btn btn-shipbuttons sub3" data-size="submedium" onclick="chosenShip(this)"></button>
         <button id="small" type="button" class="btn btn-shipbuttons boat2" data-size="small" onclick="chosenShip(this)"></button>
     </div>
-<div>
-    <div id="placeShips" class="container PlaceShips">
-        @*@for (int i = 0; i < 10; i++)
-        {
-            <div class="row no-gutters PlaceShipsRow">
-                @for (int j = 0; j < 10; j++)
-                {
-                    <div class="col field" id="@i-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
+    <div>
+        <div id="placeShips" class="container PlaceShips">
+            @for (int i = 0; i < 10; i++)
+            {
+                <div class="row no-gutters PlaceShipsRow">
+                    @for (int j = 0; j < 10; j++)
+                    {
+                        <div class="col field" id="@i-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
 
-                    </div>
-                }
-            </div>
-        }*@
-        <partial name="_PlaceShipsPartial" />
+                        </div>
+                    }
+                </div>
+            }
+        </div>
     </div>
-</div>
-<div style="margin-top: 20px" , class="DivBottomRightButtons">
-    @Html.ActionLink("Submit", "Game", "Game", null, new {@class = "btn btn-startbuttons"})
-</div>
+    <div style="margin-top: 20px" , class="DivBottomRightButtons">
+        <button type="button" class="btn btn-startbuttons" onclick="submitShips()">Submit</button>
+    </div>
 </body>
