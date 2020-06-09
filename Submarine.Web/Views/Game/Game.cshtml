@@ -21,35 +21,35 @@
     };
 
     var gridFriendly = [
-            [["clicked", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-            [["clicked", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["empty", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""]],
-            [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""]]
+        [["occupied", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]]
     ];
     var gridEnemy = [
-        [["clicked", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["occupied", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["clicked", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["clicked", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""], ["empty", ""], ["clicked", ""], ["empty", ""]]
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["clicked", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]]
     ];
 
 
     function loadFriendlyView() {
         for (var r = 0; r < gridFriendly.length; r++) {
             for (var c = 0; c < gridFriendly[r].length; c++) {
-                if (gridFriendly[r][c][0] == "clicked") {
+                if (gridFriendly[r][c][0] == "occupied") {
                     $("#F-" + r + "-" + c).css('background', "lightgray");
                 }
             }
@@ -59,8 +59,8 @@
     function loadEnemyView() {
         for (var r = 0; r < gridEnemy.length; r++) {
             for (var c = 0; c < gridEnemy[r].length; c++) {
-                if (gridEnemy[r][c][0] == "clicked") {
-                    $("#E-" + r + "-" + c).css('background', "lightgray");
+                if (gridEnemy[r][c][0] == "occupied") {
+                    //$("#E-" + r + "-" + c).css('background', "lightgray");
                 }
             }
         }
@@ -70,11 +70,11 @@
         var eventRow = parseInt(event.getAttribute("data-row"));
         var eventCol = parseInt(event.getAttribute("data-col"));
 
-        if (event.style.background == "lightgray") {
-            $(event).css('background', 'greenyellow');
+        if (gridEnemy[eventRow][eventCol][0] == "occupied") {
+            $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
         }
-        if (event.style.background == '') {
-            $(event).css('background', 'red');
+        else if (gridEnemy[eventRow][eventCol][0] == "empty") {
+            $("#E-" + eventRow + "-" + eventCol).css('background', "red");
         }
     }
 
