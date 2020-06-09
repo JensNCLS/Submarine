@@ -164,7 +164,6 @@ body {
 .PlayfieldFriendly {
     position: absolute;
     left: 10%;
-    top: 15%;
     height: 80vh;
     width: 80vh;
 }
@@ -172,7 +171,6 @@ body {
 .PlayfieldEnemy {
     position: absolute;
     right: 10%;
-    top: 15%;
     height: 80vh;
     width: 80vh;
 }
