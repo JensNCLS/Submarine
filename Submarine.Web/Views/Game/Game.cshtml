@@ -3,8 +3,6 @@
     ViewData["Title"] = "Game";
 }
 
-<h1>Game</h1>
-
 <style>
     body {
         background-color: #5e9ad3;
@@ -38,7 +36,7 @@
         [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
         [["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["clicked", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["occupied", ""], ["empty", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]],
         [["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", ""], ["empty", ""]],
@@ -91,33 +89,36 @@
     }
 </script>
 
-<div>
-    <div id="playFieldFriendly" class="container PlayfieldFriendly">
-        @for (int i = 0; i < 10; i++)
-        {
-            <div class="row no-gutters PlaceShipsRow">
-                @for (int j = 0; j < 10; j++)
-                {
-                    <div class="col field" id="F-@i-@j" data-row="@i" data-col="@j">
+<body>
+<h1>You</h1>
+    <div>
+        <div id="playFieldFriendly" class="container PlayfieldFriendly">
+            @for (int i = 0; i < 10; i++)
+            {
+                <div class="row no-gutters PlaceShipsRow">
+                    @for (int j = 0; j < 10; j++)
+                    {
+                        <div class="col field" id="F-@i-@j" data-row="@i" data-col="@j">
 
-                    </div>
-                }
-            </div>
-        }
-        @*<partial name="_PlayingFieldFriendlyPartial" />*@
-    </div>
-    <div id="playfieldEnemy" class="container PlayfieldEnemy">
-        @for (int i = 0; i < 10; i++)
-        {
-            <div class="row no-gutters PlaceShipsRow">
-                @for (int j = 0; j < 10; j++)
-                {
-                    <div class="col field" id="E-@i-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
+                        </div>
+                    }
+                </div>
+            }
+            @*<partial name="_PlayingFieldFriendlyPartial" />*@
+        </div>
+        <div id="playfieldEnemy" class="container PlayfieldEnemy">
+            @for (int i = 0; i < 10; i++)
+            {
+                <div class="row no-gutters PlaceShipsRow">
+                    @for (int j = 0; j < 10; j++)
+                    {
+                        <div class="col field" id="E-@i-@j" data-row="@i" data-col="@j" onclick="clicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
 
-                    </div>
-                }
-            </div>
-        }
-        @*<partial name="_PlayingFieldEnemyPartial" />*@
+                        </div>
+                    }
+                </div>
+            }
+            @*<partial name="_PlayingFieldEnemyPartial" />*@
+        </div>
     </div>
-</div>
+</body>
