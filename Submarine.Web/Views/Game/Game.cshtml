@@ -1,9 +1,6 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Game";
 }
-
-<h1>Game</h1>
 
 <style>
     body {
@@ -14,8 +11,101 @@
     }
 </style>
 
-<div>
-    <div id="placeShips" class="container PlaceShips">
-        <partial name="_PlayingFieldPartial" />
+<script>
+    window.onload = function () {
+        loadFriendlyView();
+    };
+
+    var gridFriendly = JSON.parse(window.localStorage.getItem("grid")); // Retrieving grid
+    var gridEnemy = [
+        [["occupied", "small"], ["occupied", "small"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["occupied", "extraLarge"], ["occupied", "extraLarge"], ["occupied", "extraLarge"], ["occupied", "extraLarge"], ["occupied", "extraLarge"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "large"], ["occupied", "large"], ["occupied", "large"], ["occupied", "large"], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "medium"], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["occupied", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "medium"], ["empty", ""]],
+        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "medium"], ["empty", ""]]
+    ];
+    
+    function loadFriendlyView() {
+        for (var r = 0; r < gridFriendly.length; r++) {
+            for (var c = 0; c < gridFriendly[r].length; c++) {
+                if (gridFriendly[r][c][0] == "clicked") {
+                    $("#F-" + r + "-" + c).css('background', "lightgray");
+                }
+            }
+        }
+    }
+
+    function friendlyClicked(event) {
+        var eventRow = parseInt(event.getAttribute("data-row"));
+        var eventCol = parseInt(event.getAttribute("data-col"));
+
+        if (gridFriendly[eventRow][eventCol][0] == "clicked") {
+            $("#F-" + eventRow + "-" + eventCol).css('background', "red");
+        }
+        else if (gridFriendly[eventRow][eventCol][0] == "empty") {
+            $("#F-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+        }
+    }
+
+    function enemyClicked(event) {
+        var eventRow = parseInt(event.getAttribute("data-row"));
+        var eventCol = parseInt(event.getAttribute("data-col"));
+
+        if (gridEnemy[eventRow][eventCol][0] == "occupied") {
+            $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+        }
+        else if (gridEnemy[eventRow][eventCol][0] == "empty") {
+            $("#E-" + eventRow + "-" + eventCol).css('background', "red");
+        }
+    }
+
+    function hoverOver(event) {
+        if (event.style.background == '') {
+            $(event).css('background', 'yellow');
+        }
+    }
+
+    function hoverOut(event) {
+        if (event.style.background == 'yellow') {
+            $(event).css('background', '');
+        }
+    }
+</script>
+
+<body>
+    <div>
+        <div id="playFieldFriendly" class="container PlayfieldFriendly">
+            <h1>You</h1>
+            @for (int i = 0; i < 10; i++)
+            {
+                <div class="row no-gutters PlaceShipsRow">
+                    @for (int j = 0; j < 10; j++)
+                    {
+                        <div class="col field" id="F-@i-@j" data-row="@i" data-col="@j" onclick="friendlyClicked(this)">
+
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div id="playfieldEnemy" class="container PlayfieldEnemy">
+            <h1>Enemy</h1>
+            @for (int i = 0; i < 10; i++)
+            {
+                <div class="row no-gutters PlaceShipsRow">
+                    @for (int j = 0; j < 10; j++)
+                    {
+                        <div class="col field" id="E-@i-@j" data-row="@i" data-col="@j" onclick="enemyClicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
+
+                        </div>
+                    }
+                </div>
+            }
+        </div>
     </div>
-</div>
+</body>
