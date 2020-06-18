@@ -24,8 +24,11 @@
     <div style="margin-top: 20px">
         @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
     </div>
-    <div style="margin-top: 20px">
+    @*<div style="margin-top: 20px">
         <button type="submit" , class="btn btn-startbuttons">Next</button>
+    </div>*@
+    <div style="        margin-top: 20px">
+        @Html.ActionLink("Start game", "PlaceShipsP1", "Game", null, new { @class = "btn btn-startbuttons" })
     </div>
 </div>
 }

@@ -12,7 +12,11 @@ namespace Submarine.Web.Controllers
     {
         ConvertGridModel convertGridModel = new ConvertGridModel();
 
-        public IActionResult PlaceShips()
+        public IActionResult PlaceShipsP1()
+        {
+            return View();
+        }
+        public IActionResult PlaceShipsP2()
         {
             return View();
         }
@@ -28,7 +32,13 @@ namespace Submarine.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult Grid(IEnumerable<string> grid)
+        public JsonResult GridP1(IEnumerable<string> grid)
+        {
+            convertGridModel.ConvertGrid(grid);
+            return Json(grid);
+        }
+        [HttpPost]
+        public JsonResult GridP2(IEnumerable<string> grid)
         {
             convertGridModel.ConvertGrid(grid);
             return Json(grid);

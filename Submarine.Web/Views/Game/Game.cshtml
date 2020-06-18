@@ -14,28 +14,27 @@
 <script>
 
     window.onload = function () {
-        loadFriendlyView();
+        loadP1View();
+        loadP2View();
     };
 
-    var gridFriendly = JSON.parse(window.localStorage.getItem("grid")); // Retrieving grid
-    var gridEnemy = [
-        [["occupied", "small"], ["occupied", "small"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["occupied", "extraLarge"], ["occupied", "extraLarge"], ["occupied", "extraLarge"], ["occupied", "extraLarge"], ["occupied", "extraLarge"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "large"], ["occupied", "large"], ["occupied", "large"], ["occupied", "large"], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["occupied", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["occupied", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "medium"], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["occupied", "submedium"], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "medium"], ["empty", ""]],
-        [["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["empty", ""], ["occupied", "medium"], ["empty", ""]]
-    ];
+    var gridP1 = JSON.parse(window.localStorage.getItem("gridP1")); // Retrieving grid P1
+    var gridP2 = JSON.parse(window.localStorage.getItem("gridP2")); // Retrieving grid P2
     
-    function loadFriendlyView() {
-        for (var r = 0; r < gridFriendly.length; r++) {
-            for (var c = 0; c < gridFriendly[r].length; c++) {
-                if (gridFriendly[r][c][0] == "clicked") {
+    function loadP1View() {
+        for (var r = 0; r < gridP1.length; r++) {
+            for (var c = 0; c < gridP1[r].length; c++) {
+                if (gridP1[r][c][0] == "clicked") {
                     $("#F-" + r + "-" + c).css('background', "lightgray");
+                }
+            }
+        }
+    }
+    function loadP2View() {
+        for (var r = 0; r < gridP2.length; r++) {
+            for (var c = 0; c < gridP2[r].length; c++) {
+                if (gridP2[r][c][0] == "clicked") {
+                    $("#E-" + r + "-" + c).css('background', "lightgray");
                 }
             }
         }
@@ -45,10 +44,10 @@
         var eventRow = parseInt(event.getAttribute("data-row"));
         var eventCol = parseInt(event.getAttribute("data-col"));
 
-        if (gridFriendly[eventRow][eventCol][0] == "clicked") {
+        if (gridP1[eventRow][eventCol][0] == "clicked") {
             $("#F-" + eventRow + "-" + eventCol).css('background', "red");
         }
-        else if (gridFriendly[eventRow][eventCol][0] == "empty") {
+        else if (gridP1[eventRow][eventCol][0] == "empty") {
             $("#F-" + eventRow + "-" + eventCol).css('background', "greenyellow");
         }
     }
@@ -57,10 +56,10 @@
         var eventRow = parseInt(event.getAttribute("data-row"));
         var eventCol = parseInt(event.getAttribute("data-col"));
 
-        if (gridEnemy[eventRow][eventCol][0] == "occupied") {
+        if (gridP2[eventRow][eventCol][0] == "occupied") {
             $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
         }
-        else if (gridEnemy[eventRow][eventCol][0] == "empty") {
+        else if (gridP2[eventRow][eventCol][0] == "empty") {
             $("#E-" + eventRow + "-" + eventCol).css('background', "red");
         }
     }

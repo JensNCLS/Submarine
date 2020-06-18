@@ -387,20 +387,20 @@
             }
         }
 
-        //if (count == 17) {
+        if (count == 17) {
             var url = '@Url.Action("Game", "Game")';
             window.location.href = url;
-            window.localStorage.setItem("grid", JSON.stringify(grid)); // Saving grid
+            window.localStorage.setItem("gridP2", JSON.stringify(grid)); // Saving grid
 
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("Grid", "Game")',
+                url: '@Url.Action("GridP2", "Game")',
                 data: { grid: grid },
                 traditional: true,
                 success: function () { alert("Mapping Successful") },
                 failure: function () { alert("not working..."); }
             });
-        //}
+        }
     }
 </script>
 
