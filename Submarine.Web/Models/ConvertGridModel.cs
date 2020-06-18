@@ -11,43 +11,28 @@ namespace Submarine.Web.Models
 {
     public class ConvertGridModel
     {
-        List<string[]> tempGrid = new List<string[]>();
-        public string[][][] viewGrid = new string[10][][];
+        private List<string[]> tempGrid = new List<string[]>();
+        private List<List<string[]>> viewGrid = new List<List<string[]>>();
         public List<ShipBase> shipList = new List<ShipBase>();
 
         public void ConvertGrid(IEnumerable<string> grid)
         {
             foreach (var row in grid)
             {
-                for (int r = 0; r < viewGrid.Length; r++)
-                {
-                    viewGrid[r] = new string[10][];
-                    for (int c = 0; c < viewGrid[r].Length; c++)
-                    {
-                        viewGrid[r][c] = new string[2];
-                    }
-                }
-
                 string[] gridRow = row.Split(",");
                 tempGrid.Add(gridRow);
             }
 
-            //for (int r = 0; r < viewGrid.Length; r++)
-            //{
-            //    for (int c = 0; c < viewGrid[r].Length; c++)
-            //    {
-            //        viewGrid[r][c][0] = tempGrid[r][]
-            //        //for (int i = 0; i < viewGrid[r][c].Length; i++)
-            //        //{
-            //        //    viewGrid[r][c][i] = tempGrid[r][c + i];
-            //        //    string test = tempGrid[r][c + i].ToString();
-            //        //}
-            //    }
-            //}
-            string test = tempGrid[0][0].ToString();
-            string test1 = tempGrid[0][1].ToString();
-            string test2 = tempGrid[0][2].ToString();
-            string test3 = tempGrid[0][3].ToString();
+            foreach (var row in tempGrid)
+            {
+                List<string[]> rowList = new List<string[]>(); 
+                for (int i = 0; i < row.Length; i+=2)
+                {
+                    string[] cell = new[] {row[i], row[i + 1]};
+                    rowList.Add(cell);
+                }
+                viewGrid.Add(rowList);
+            }
 
             List<ICoordinate> coSmall = new List<ICoordinate>();
             List<ICoordinate> coMedium = new List<ICoordinate>();
@@ -55,9 +40,9 @@ namespace Submarine.Web.Models
             List<ICoordinate> coLarge = new List<ICoordinate>();
             List<ICoordinate> coExtraLarge = new List<ICoordinate>();
 
-            for (int r = 0; r < viewGrid.Length; r++)
+            for (int r = 0; r < viewGrid.Count; r++)
             {
-                for (int c = 0; c < viewGrid[r].Length; c++)
+                for (int c = 0; c < viewGrid[r].Count; c++)
                 {
                     if (viewGrid[r][c][1] == "small")
                     {
