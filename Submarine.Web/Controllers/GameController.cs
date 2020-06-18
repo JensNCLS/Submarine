@@ -10,7 +10,8 @@ namespace Submarine.Web.Controllers
 {
     public class GameController : Controller
     {
-        ConvertGridModel convertGridModel = new ConvertGridModel();
+        ConvertGridModel convertGridModelP1 = new ConvertGridModel();
+        ConvertGridModel convertGridModelP2 = new ConvertGridModel();
 
         public IActionResult PlaceShipsP1()
         {
@@ -25,8 +26,8 @@ namespace Submarine.Web.Controllers
         {
             GameModel game = new GameModel();
             game.NewGame(2);
-            game.SetShipsOfPlayer(game.Players[0], convertGridModel.shipList);
-            game.SetShipsOfPlayer(game.Players[1], convertGridModel.shipList);
+            game.SetShipsOfPlayer(game.Players[0], convertGridModelP1.shipList);
+            game.SetShipsOfPlayer(game.Players[1], convertGridModelP2.shipList);
             game.StartBattle();
             return View();
         }
@@ -34,13 +35,14 @@ namespace Submarine.Web.Controllers
         [HttpPost]
         public JsonResult GridP1(IEnumerable<string> grid)
         {
-            convertGridModel.ConvertGrid(grid);
+            convertGridModelP1.ConvertGrid(grid);
             return Json(grid);
         }
+
         [HttpPost]
         public JsonResult GridP2(IEnumerable<string> grid)
         {
-            convertGridModel.ConvertGrid(grid);
+            convertGridModelP2.ConvertGrid(grid);
             return Json(grid);
         }
     }

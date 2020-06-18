@@ -13,10 +13,10 @@
 
 <script>
 
-    window.onload = function () {
-        loadP1View();
-        loadP2View();
-    };
+    //window.onload = function () {
+    //    loadP1View();
+    //    loadP2View();
+    //};
 
     var gridP1 = JSON.parse(window.localStorage.getItem("gridP1")); // Retrieving grid P1
     var gridP2 = JSON.parse(window.localStorage.getItem("gridP2")); // Retrieving grid P2
@@ -56,11 +56,11 @@
         var eventRow = parseInt(event.getAttribute("data-row"));
         var eventCol = parseInt(event.getAttribute("data-col"));
 
-        if (gridP2[eventRow][eventCol][0] == "occupied") {
-            $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+        if (gridP2[eventRow][eventCol][0] == "clicked") {
+            $("#E-" + eventRow + "-" + eventCol).css('background', "red");
         }
         else if (gridP2[eventRow][eventCol][0] == "empty") {
-            $("#E-" + eventRow + "-" + eventCol).css('background', "red");
+            $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
         }
     }
 
@@ -86,7 +86,7 @@
                 <div class="row no-gutters PlaceShipsRow">
                     @for (int j = 0; j < 10; j++)
                     {
-                        <div class="col field" id="F-@i-@j" data-row="@i" data-col="@j" onclick="friendlyClicked(this)">
+                        <div class="col field" id="F-@i-@j" data-row="@i" data-col="@j" onclick="friendlyClicked(this)" onmouseover="hoverOver(this)" onmouseout="hoverOut(this)">
 
                         </div>
                     }
