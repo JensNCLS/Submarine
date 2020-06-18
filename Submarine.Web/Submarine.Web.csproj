@@ -9,6 +9,18 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Servicebus\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\Servicebus\Database\Database.csproj" />
+    <ProjectReference Include="..\Servicebus\Entities\Entities.csproj" />
+    <ProjectReference Include="..\Servicebus\Repository\Repository.csproj" />
+    <ProjectReference Include="..\Servicebus\ServiceBus\ServiceBus.csproj" />
+    <ProjectReference Include="..\Submarine.Core\Submarine.Core.csproj" />
+    <ProjectReference Include="..\Submarine.GameLogic\Submarine.GameLogic.csproj" />
+    <ProjectReference Include="..\Submarine.ServiceBus\Submarine.ServiceBus.csproj" />
+    <ProjectReference Include="..\Submarine.Terminal\Submarine.Terminal.csproj" />
+  </ItemGroup>
+
 
 
 </Project>

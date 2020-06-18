@@ -9,6 +9,8 @@ namespace Submarine.Web.Controllers
 {
     public class GameController : Controller
     {
+        ConvertGridModel convertGridModel = new ConvertGridModel();
+
         public IActionResult PlaceShips()
         {
             return View();
@@ -16,7 +18,15 @@ namespace Submarine.Web.Controllers
 
         public IActionResult Game()
         {
+            
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult Grid(IEnumerable<string> grid)
+        {
+            convertGridModel.ConvertGrid(grid);
+            return Json(grid);
         }
     }
 }
