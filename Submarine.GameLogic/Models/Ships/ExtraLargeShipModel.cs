@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Submarine.GameLogic.Models.Ships
 {
-    class ExtraLargeShipModel : ShipBase
+    public class ExtraLargeShipModel : ShipBase
     {
         // Properties
         /// <summary>
