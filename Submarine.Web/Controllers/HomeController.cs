@@ -33,7 +33,7 @@ namespace Submarine.Web.Controllers
             }
             else
             {
-                return RedirectToAction("PlaceShïpsP1","Game");
+                return RedirectToAction("Home");
             }
         }
 

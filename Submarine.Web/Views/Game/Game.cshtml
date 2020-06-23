@@ -12,55 +12,74 @@
 </style>
 
 <script>
+    window.onload = function () {
+        $("#endP2Turn").css('filter', "alpha(opacity:30)");
+        $("#endP2Turn").css('opacity', '.30');
+        $("#endP2Turn").css('background-color', '#111');
+    };
 
-    //window.onload = function () {
-    //    loadP1View();
-    //    loadP2View();
-    //};
-
+    var P1Turn = true;
+    var P2Turn = false;
+    var P1Moved = false;
+    var P2Moved = false;
     var gridP1 = JSON.parse(window.localStorage.getItem("gridP1")); // Retrieving grid P1
     var gridP2 = JSON.parse(window.localStorage.getItem("gridP2")); // Retrieving grid P2
-    
-    function loadP1View() {
-        for (var r = 0; r < gridP1.length; r++) {
-            for (var c = 0; c < gridP1[r].length; c++) {
-                if (gridP1[r][c][0] == "clicked") {
-                    $("#F-" + r + "-" + c).css('background', "lightgray");
-                }
-            }
+
+    function endTurnP1(event) {
+        if (P1Turn) {
+            P1Turn = false;
+            P2Turn = true;
+            P1Moved = false;
+            $(event).css('filter', "alpha(opacity:30)");
+            $(event).css('opacity', '.30');
+            $(event).css('background-color', '#111');
         }
     }
-    function loadP2View() {
-        for (var r = 0; r < gridP2.length; r++) {
-            for (var c = 0; c < gridP2[r].length; c++) {
-                if (gridP2[r][c][0] == "clicked") {
-                    $("#E-" + r + "-" + c).css('background', "lightgray");
-                }
-            }
+
+    function endTurnP2(event) {
+        if (P2Turn) {
+            P1Turn = true;
+            P2Turn = false;
+            P2Moved = false;
+            $(event).css('filter', "alpha(opacity:30)");
+            $(event).css('opacity', '.30');
+            $(event).css('background-color', '#111');
         }
     }
 
     function friendlyClicked(event) {
-        var eventRow = parseInt(event.getAttribute("data-row"));
-        var eventCol = parseInt(event.getAttribute("data-col"));
+        if (P2Turn && !P2Moved) {
+            var eventRow = parseInt(event.getAttribute("data-row"));
+            var eventCol = parseInt(event.getAttribute("data-col"));
 
-        if (gridP1[eventRow][eventCol][0] == "clicked") {
-            $("#F-" + eventRow + "-" + eventCol).css('background', "red");
-        }
-        else if (gridP1[eventRow][eventCol][0] == "empty") {
-            $("#F-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+            if (gridP1[eventRow][eventCol][0] == "clicked") {
+                $("#F-" + eventRow + "-" + eventCol).css('background', "red");
+            }
+            else if (gridP1[eventRow][eventCol][0] == "empty") {
+                $("#F-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+                P2Moved = true;
+                $("#endP2Turn").css('filter', "");
+                $("#endP2Turn").css('opacity', '');
+                $("#endP2Turn").css('background-color', '');
+            }
         }
     }
 
     function enemyClicked(event) {
-        var eventRow = parseInt(event.getAttribute("data-row"));
-        var eventCol = parseInt(event.getAttribute("data-col"));
+        if (P1Turn && !P1Moved) {
+            var eventRow = parseInt(event.getAttribute("data-row"));
+            var eventCol = parseInt(event.getAttribute("data-col"));
 
-        if (gridP2[eventRow][eventCol][0] == "clicked") {
-            $("#E-" + eventRow + "-" + eventCol).css('background', "red");
-        }
-        else if (gridP2[eventRow][eventCol][0] == "empty") {
-            $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+            if (gridP2[eventRow][eventCol][0] == "clicked") {
+                $("#E-" + eventRow + "-" + eventCol).css('background', "red");
+            }
+            else if (gridP2[eventRow][eventCol][0] == "empty") {
+                $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+                P1Moved = true;
+                $("#endP1Turn").css('filter', "");
+                $("#endP1Turn").css('opacity', '');
+                $("#endP1Turn").css('background-color', '');
+            }
         }
     }
 
@@ -80,7 +99,7 @@
 <body>
     <div>
         <div id="playFieldFriendly" class="container PlayfieldFriendly">
-            <h1>You</h1>
+            <h1>Player 1</h1>
             @for (int i = 0; i < 10; i++)
             {
                 <div class="row no-gutters PlaceShipsRow">
@@ -92,9 +111,10 @@
                     }
                 </div>
             }
+            <button id="endP1Turn" type="button" class="btn btn-startbuttons" onclick="endTurnP1(this)">End turn</button>
         </div>
         <div id="playfieldEnemy" class="container PlayfieldEnemy">
-            <h1>Enemy</h1>
+            <h1>Player 2</h1>
             @for (int i = 0; i < 10; i++)
             {
                 <div class="row no-gutters PlaceShipsRow">
@@ -106,6 +126,7 @@
                     }
                 </div>
             }
+            <button id="endP2Turn" type="button" class="btn btn-startbuttons" onclick="endTurnP2(this)">End turn</button>
         </div>
     </div>
 </body>
