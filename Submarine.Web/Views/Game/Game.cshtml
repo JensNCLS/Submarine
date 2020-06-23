@@ -53,10 +53,10 @@
             var eventCol = parseInt(event.getAttribute("data-col"));
 
             if (gridP1[eventRow][eventCol][0] == "clicked") {
-                $("#F-" + eventRow + "-" + eventCol).css('background', "red");
+                $("#F-" + eventRow + "-" + eventCol).css('background', "greenyellow");
             }
             else if (gridP1[eventRow][eventCol][0] == "empty") {
-                $("#F-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+                $("#F-" + eventRow + "-" + eventCol).css('background', "red");
                 P2Moved = true;
                 $("#endP2Turn").css('filter', "");
                 $("#endP2Turn").css('opacity', '');
@@ -71,10 +71,10 @@
             var eventCol = parseInt(event.getAttribute("data-col"));
 
             if (gridP2[eventRow][eventCol][0] == "clicked") {
-                $("#E-" + eventRow + "-" + eventCol).css('background', "red");
+                $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
             }
             else if (gridP2[eventRow][eventCol][0] == "empty") {
-                $("#E-" + eventRow + "-" + eventCol).css('background', "greenyellow");
+                $("#E-" + eventRow + "-" + eventCol).css('background', "red");
                 P1Moved = true;
                 $("#endP1Turn").css('filter', "");
                 $("#endP1Turn").css('opacity', '');
