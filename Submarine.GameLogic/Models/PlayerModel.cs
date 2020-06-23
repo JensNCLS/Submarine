@@ -27,8 +27,6 @@ namespace Submarine.GameLogic.Models
             ShotSpaces = new List<ICoordinate>();
         }
 
-
-
         // Methods
         /// <summary>
         /// Checks if the player still has ships that are alive
