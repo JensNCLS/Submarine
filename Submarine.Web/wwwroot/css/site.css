@@ -133,6 +133,17 @@ body {
     background-color: #98cbee;
 }
 
+.DivWinner {
+    position: fixed;
+    top: 50%;
+    left: 65%;
+    width: 20%;
+    height: 15vh;
+    margin: -100px 0 0 -25%;
+    text-align: center;
+    background-color: #98cbee;
+}
+
 .DivLoginAndLobby {
     position: fixed;
     top: 50%;
