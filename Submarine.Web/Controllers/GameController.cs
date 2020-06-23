@@ -22,6 +22,15 @@ namespace Submarine.Web.Controllers
             return View();
         }
 
+        public IActionResult WinnerP1()
+        {
+            return View();
+        }
+        public IActionResult WinnerP2()
+        {
+            return View();
+        }
+
         public IActionResult Game()
         {
             GameModel game = new GameModel();
