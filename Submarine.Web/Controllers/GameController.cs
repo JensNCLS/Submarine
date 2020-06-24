@@ -33,6 +33,7 @@ namespace Submarine.Web.Controllers
 
         public IActionResult Game()
         {
+            // create a game
             GameModel game = new GameModel();
             game.NewGame(2);
             game.SetShipsOfPlayer(game.Players[0], convertGridModelP1.shipList);

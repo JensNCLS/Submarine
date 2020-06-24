@@ -14,7 +14,7 @@
 </style>
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
-<div class="DivStart">@*, style="margin-top: 265px">*@
+<div class="DivStart">
     <div style="margin-top: 15px">
     </div>
     <h2>Start Game</h2>
@@ -27,7 +27,7 @@
     @*<div style="margin-top: 20px">
         <button type="submit" , class="btn btn-startbuttons">Next</button>
     </div>*@
-    <div style="        margin-top: 20px">
+    <div style="margin-top: 20px">
         @Html.ActionLink("Start!", "PlaceShipsP1", "Game", null, new { @class = "btn btn-startbuttons" })
     </div>
 </div>

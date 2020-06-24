@@ -18,7 +18,7 @@ namespace Submarine.Terminal
 
 
 
-            // Crappy implementation to test the Submarine game
+            // Implementation to test the Submarine game
             Console.Title = "Submarine - Terminal edition";
             TextHelper.ShowText("Hello", 10000);
             TextHelper.ShowText("Ready to play a super crappy game of Battleship?");
@@ -40,12 +40,11 @@ namespace Submarine.Terminal
 
 
             // Set ships
-            // LOL DEBUG STUFFFFFFFF
             var debugShipsP1 = debugDataHelper.GetDebugShipSetP1();
             var debugShipsP2 = debugDataHelper.GetDebugShipSetP2();
             Game.SetShipsOfPlayer(Game.Players[0], debugShipsP1);
             Game.SetShipsOfPlayer(Game.Players[1], debugShipsP2);
-            // #END OF HARDWIRED DEBUG STUFF
+            // #END OF HARDWIRED DEBUG
 
 
             TextHelper.ShowText("Ships have been set...");
@@ -83,19 +82,6 @@ namespace Submarine.Terminal
 
             TextHelper.ShowText("Game over");
             string x = Console.ReadLine();
-
-
-
-
-
         }
-
-
-
-        // Rediculous loops
-
-
-
-
     }
 }
