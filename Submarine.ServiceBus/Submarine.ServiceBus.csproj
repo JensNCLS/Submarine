@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="4.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Servicebus\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\Servicebus\Database\Database.csproj" />
+    <ProjectReference Include="..\Servicebus\Entities\Entities.csproj" />
+    <ProjectReference Include="..\Servicebus\Repository\Repository.csproj" />
+    <ProjectReference Include="..\Servicebus\ServiceBus\ServiceBus.csproj" />
+  </ItemGroup>
+
+</Project>

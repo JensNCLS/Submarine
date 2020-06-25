@@ -1,0 +1,1 @@
+﻿Dit project is voor de koppeling met de ServiceBus, zodat deze indien nodig losgekoppeld kan worden wanneer de bus niet meer bestaat

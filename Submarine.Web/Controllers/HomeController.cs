@@ -18,12 +18,31 @@ namespace Submarine.Web.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Login()
+        {
+            PlayerModel model = new PlayerModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Login(PlayerModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Home");
+            }
+        }
+
+        public IActionResult Home()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Quit()
         {
             return View();
         }

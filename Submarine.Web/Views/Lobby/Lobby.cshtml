@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Lobby";
+}
+<style>
+    body {
+        background-color: #5e9ad3;
+    }
+
+    footer {
+        background-color: white;
+    }
+</style>
+<h1>Lobby: @Html.Encode(Model.lobbyCode)</h1>
+
+<div style="margin-top: 40px">
+    <partial name="_LobbyPlayersPartial" />
+</div>
+
+<div class="DivBottomRightButtons">
+    <div style="margin-top: 20px">
+        @Html.ActionLink("Leave lobby", "Home", "Home", null, new { @class = "btn btn-startbuttons" })
+    </div>
+</div>
+

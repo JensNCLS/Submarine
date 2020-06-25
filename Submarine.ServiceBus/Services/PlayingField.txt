@@ -1,0 +1,135 @@
+
+        public void OnTopicMessageReceived(string message)
+        {
+            Transfer transfer = JsonConvert.DeserializeObject<Transfer>(message);
+
+            if (transfer.type == MessageType.Action)
+            {
+                GameAction action = JsonConvert.DeserializeObject<GameAction>(transfer.message);
+                Player player = StaticResources.PlayerList.Where(player => player.userId == action.playerId).First();
+
+                if (action.action == PlayerAction.shoot)
+                {
+                    // enter code here to display action message in log
+                    string logEntry = "{player} shot at field: {field} row: {row} col: {col}, and has {hit/missed}";
+                    WriteMessageToLog(logEntry);
+
+                    if (action.coordinates.field == StaticResources.user.orderNumber)
+                    {
+                        // shot is directed at my field
+
+                        bool hit = true; // implement function to check if the shot hit anything
+
+                        bool gameOver = false; // implement function to check if you still have ships alive
+
+                        SendHitResponseMessage(action.coordinates, hit, gameOver);
+                    }
+                }
+
+            }
+
+            if (transfer.type == MessageType.Surender)
+            {
+                SurrenderResponse response = JsonConvert.DeserializeObject<SurrenderResponse>(transfer.message);
+                Player player = StaticResources.PlayerList.Where(player => player.userId == response.playerId).First();
+
+                // enter code here to display surrender message in log
+                string logEntry = "{player} had surrendered";
+                WriteMessageToLog(logEntry);
+
+                // start gameover function
+                HandleGameOver(response.playerId, response.field);
+            }
+
+            if (transfer.type == MessageType.GameResponse)
+            {
+                GameResponse response = JsonConvert.DeserializeObject<GameResponse>(transfer.message);
+                //Player player = StaticResources.PlayerList.Where(player => player.userId == response.playerId).First();
+
+                // write the game response to the log + modify playing field to show what happenend
+                string logEntry = response.hit ? 
+                    "The shot at {field}, {row}, {col} has landed a hit":
+                    "The shot at {field}, {row}, {col} has missed its target";
+                WriteMessageToLog(logEntry);
+
+
+                // start gameover function if player is gameover
+                if (response.gameOver)
+                {
+                    HandleGameOver(response.playerId);
+                }
+            }
+        }
+
+        private void HandleGameOver(Guid playerId, PlayerField field = null)
+        {
+            Player player = StaticResources.PlayerList.Where(player => player.userId == playerId).First();
+            // player.orderNumber == fieldnumber
+
+            // enter code here to display the gameover message in the log
+            string logEntry = "All boats of {player} have been destroyed";
+            WriteMessageToLog(logEntry);
+
+            if (field != null)
+            {
+                // display all boats in field as sunk
+            }
+
+            // change player field color to indicate the game over
+        }
+
+        public void WriteMessageToLog(string logEntry)
+        {
+            // implement function to write the message to the log
+        }
+
+        public void SendHitResponseMessage(Coordinates shot, bool hit, bool gameOver)
+        {
+            // col = 0 - 9
+            // row = 0 - 9
+
+            GameResponse response = new GameResponse()
+            {
+                fieldNumber = StaticResources.user.orderNumber,
+                coordinates = shot,
+                hit = hit,
+                gameOver = gameOver,
+                playerId = StaticResources.user.userId
+            };
+
+            string line = JsonConvert.SerializeObject(response);
+
+            ServiceBusHandler.program.topic.SendTopicMessage(line, MessageType.GameResponse);
+        }
+
+        public void SendSurrenderMessage()
+        {
+            SurrenderResponse response = new SurrenderResponse()
+            {
+                playerId = StaticResources.user.userId,
+                field = StaticResources.field
+            };
+
+            string line = JsonConvert.SerializeObject(response);
+
+            ServiceBusHandler.program.topic.SendTopicMessage(line, MessageType.GameResponse);
+        }
+
+        public void SendShootMessage(Coordinates coordinates)
+        {
+            GameAction action = new GameAction()
+            {
+                action = PlayerAction.shoot,
+                coordinates = new Coordinates()
+                {
+                    field = coordinates.field,
+                    row = coordinates.row,
+                    col = coordinates.col
+                },
+                playerId = StaticResources.user.userId,
+            };
+
+            string line = JsonConvert.SerializeObject(action);
+
+            ServiceBusHandler.program.topic.SendTopicMessage(line, MessageType.Action);
+        }
